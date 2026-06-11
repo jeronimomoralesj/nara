@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
+import { Navbar } from "@/components/Navbar";
+import { Footer } from "@/components/Footer";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -8,10 +10,21 @@ const inter = Inter({
   display: "swap",
 });
 
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  display: "swap",
+  axes: ["opsz"],
+});
+
 export const metadata: Metadata = {
-  title: "Fundación Nara — Dignidad para el adulto mayor en Colombia",
+  metadataBase: new URL("https://fundacionnara.org"),
+  title: {
+    default: "Fundación Nara — Dignidad para el adulto mayor en Colombia",
+    template: "%s · Fundación Nara",
+  },
   description:
-    "Fundación Nara restaura la dignidad de los adultos mayores abandonados en Colombia. Vivienda, salud y nutrición para quienes el mundo olvidó.",
+    "Restauramos la dignidad de los adultos mayores abandonados en Colombia. Vivienda, salud y nutrición para quienes el mundo olvidó.",
   keywords: [
     "Fundación Nara",
     "adulto mayor",
@@ -19,6 +32,8 @@ export const metadata: Metadata = {
     "donaciones",
     "Agape",
     "responsabilidad social",
+    "Nequi",
+    "Daviplata",
   ],
   openGraph: {
     title: "Fundación Nara — Dignidad para el adulto mayor en Colombia",
@@ -35,8 +50,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es" className={inter.variable}>
-      <body className="min-h-screen bg-white">{children}</body>
+    <html lang="es" className={`${inter.variable} ${fraunces.variable}`}>
+      <body className="min-h-screen bg-cream">
+        <Navbar />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

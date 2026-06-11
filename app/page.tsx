@@ -1,21 +1,17 @@
-import { Navbar } from "@/components/Navbar";
-import { Hero } from "@/components/sections/Hero";
-import { AgapeMission } from "@/components/sections/AgapeMission";
-import { GivingChannels } from "@/components/sections/GivingChannels";
-import { FutureVision } from "@/components/sections/FutureVision";
-import { Footer } from "@/components/sections/Footer";
+import { Hero } from "@/components/home/Hero";
+import { AgapeStory } from "@/components/home/AgapeStory";
+import { CommunityFeed } from "@/components/home/CommunityFeed";
+import { DonateSection } from "@/components/home/DonateSection";
+import { PymeSection } from "@/components/home/PymeSection";
 
 export default function Home() {
   return (
-    <>
-      <Navbar />
-      <main>
-        <Hero />
-        <AgapeMission />
-        <GivingChannels />
-        <FutureVision />
-      </main>
-      <Footer />
-    </>
+    <main>
+      <Hero />
+      <AgapeStory />
+      <CommunityFeed />
+      <DonateSection />
+      <PymeSection />
+    </main>
   );
 }

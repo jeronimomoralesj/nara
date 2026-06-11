@@ -3,11 +3,6 @@
 @tailwind utilities;
 
 @layer base {
-  :root {
-    --background: #ffffff;
-    --foreground: #1a1a1a;
-  }
-
   * {
     @apply border-charcoal/10;
   }
@@ -20,11 +15,10 @@
   }
 
   body {
-    @apply bg-white text-charcoal antialiased;
+    @apply bg-cream text-charcoal antialiased;
     font-feature-settings: "ss01", "cv01", "cv11";
   }
 
-  /* Respect users who prefer reduced motion */
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -36,13 +30,23 @@
     }
   }
 
-  /* Premium, accessible focus ring */
   :focus-visible {
-    @apply outline-none ring-2 ring-terracotta-500 ring-offset-2 ring-offset-white;
+    @apply outline-none ring-2 ring-terracotta-500 ring-offset-2 ring-offset-cream;
   }
 
   ::selection {
     @apply bg-terracotta-100 text-terracotta-800;
+  }
+
+  /* Slim, warm scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-charcoal/15;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-charcoal/25;
   }
 }
 
@@ -55,9 +59,21 @@
     @apply mx-auto w-full max-w-content;
   }
 
-  /* Subtle eyebrow label used across sections */
   .eyebrow {
-    @apply text-xs font-medium uppercase tracking-[0.2em] text-terracotta-600;
+    @apply text-xs font-medium uppercase tracking-[0.22em] text-terracotta-600;
+  }
+
+  /* Tactile, soft UI card */
+  .card-soft {
+    @apply rounded-3xl border border-charcoal/[0.07] bg-white shadow-[0_2px_40px_-12px_rgba(26,23,20,0.12)];
+  }
+
+  .field {
+    @apply h-12 w-full rounded-2xl border border-charcoal/15 bg-white px-4 text-sm text-charcoal outline-none transition-all duration-300 placeholder:text-charcoal-muted/60 focus:border-terracotta-400 focus:ring-4 focus:ring-terracotta-500/10;
+  }
+
+  .field-error {
+    @apply border-red-300 focus:border-red-400 focus:ring-red-500/10;
   }
 }
 
@@ -65,13 +81,25 @@
   .text-balance {
     text-wrap: balance;
   }
+  .text-pretty {
+    text-wrap: pretty;
+  }
 
   .bg-grain {
     background-image: radial-gradient(
       circle at 1px 1px,
-      rgba(0, 0, 0, 0.04) 1px,
+      rgba(26, 23, 20, 0.05) 1px,
       transparent 0
     );
-    background-size: 28px 28px;
+    background-size: 30px 30px;
+  }
+
+  /* Hide scrollbar for horizontal showcases while keeping scroll */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }

@@ -6,30 +6,25 @@ import * as React from "react";
 interface RevealProps {
   children: React.ReactNode;
   delay?: number;
+  y?: number;
   className?: string;
-  /** HTML tag to render. Defaults to div. */
-  as?: "div" | "section" | "li" | "span";
+  as?: "div" | "section" | "li" | "span" | "article";
 }
 
 const variants: Variants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (delay: number) => ({
+  hidden: (custom: { y: number }) => ({ opacity: 0, y: custom.y }),
+  visible: (custom: { delay: number }) => ({
     opacity: 1,
     y: 0,
-    transition: {
-      duration: 0.7,
-      delay,
-      ease: [0.22, 1, 0.36, 1],
-    },
+    transition: { duration: 0.8, delay: custom.delay, ease: [0.22, 1, 0.36, 1] },
   }),
 };
 
-/**
- * Subtle scroll-triggered fade-and-rise. Animates once on enter.
- */
+/** Subtle scroll-triggered fade-and-rise. Animates once. */
 export function Reveal({
   children,
   delay = 0,
+  y = 28,
   className,
   as = "div",
 }: RevealProps) {
@@ -37,7 +32,7 @@ export function Reveal({
   return (
     <MotionTag
       className={className}
-      custom={delay}
+      custom={{ delay, y }}
       variants={variants}
       initial="hidden"
       whileInView="visible"
