@@ -69,7 +69,7 @@ export function AgapeStory() {
                 Fundación Nara nace de la mano de{" "}
                 <span className="font-medium text-charcoal">Agape</span>. Cada
                 pulsera se teje a mano y el{" "}
-                <span className="font-medium text-terracotta-600">
+                <span className="font-medium text-blue-600">
                   100% de sus ganancias
                 </span>{" "}
                 financia directamente comida, refugio y salud para un adulto
@@ -98,7 +98,7 @@ export function AgapeStory() {
                 key={a.label}
                 className="inline-flex items-center gap-2 rounded-full border border-charcoal/10 bg-cream px-4 py-2 text-sm font-medium text-charcoal"
               >
-                <a.icon size={16} className="text-terracotta-500" />
+                <a.icon size={16} className="text-blue-500" />
                 {a.label}
               </span>
             ))}
@@ -123,7 +123,7 @@ export function AgapeStory() {
               whileHover={{ y: -8 }}
               className="group relative w-[260px] shrink-0 snap-start sm:w-[300px]"
             >
-              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.75rem] bg-terracotta-50">
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.75rem] bg-blue-50">
                 <Image
                   src={b.image}
                   alt={`Pulsera Agape ${b.name}`}
@@ -143,7 +143,7 @@ export function AgapeStory() {
                     <ArrowUpRight size={15} />
                   </a>
                 </div>
-                <span className="absolute left-4 top-4 rounded-full bg-white/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-terracotta-700 backdrop-blur">
+                <span className="absolute left-4 top-4 rounded-full bg-white/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-blue-700 backdrop-blur">
                   100% impacto
                 </span>
               </div>
@@ -166,9 +166,9 @@ export function AgapeStory() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             whileHover={{ y: -8 }}
-            className="group flex w-[260px] shrink-0 snap-start flex-col items-center justify-center rounded-[1.75rem] border border-dashed border-terracotta-300 bg-cream p-8 text-center sm:w-[300px]"
+            className="group flex w-[260px] shrink-0 snap-start flex-col items-center justify-center rounded-[1.75rem] border border-dashed border-blue-300 bg-cream p-8 text-center sm:w-[300px]"
           >
-            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-terracotta-500 text-white transition-transform duration-500 group-hover:rotate-45">
+            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-500 text-white transition-transform duration-500 group-hover:rotate-45">
               <ArrowUpRight size={24} />
             </span>
             <p className="mt-5 font-display text-xl font-normal text-charcoal">

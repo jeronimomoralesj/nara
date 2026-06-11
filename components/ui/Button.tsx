@@ -14,10 +14,10 @@ interface ButtonProps
 
 const variants: Record<ButtonVariant, string> = {
   primary:
-    "bg-terracotta-500 text-white hover:bg-terracotta-600 shadow-sm hover:shadow-md hover:shadow-terracotta-500/20",
+    "bg-blue-500 text-white hover:bg-blue-600 shadow-sm hover:shadow-md hover:shadow-blue-500/20",
   secondary: "bg-charcoal text-white hover:bg-charcoal-soft shadow-sm",
   ghost: "bg-transparent text-charcoal hover:bg-charcoal/5 border border-charcoal/15",
-  soft: "bg-terracotta-50 text-terracotta-700 hover:bg-terracotta-100",
+  soft: "bg-blue-50 text-blue-700 hover:bg-blue-100",
 };
 
 const sizes: Record<ButtonSize, string> = {

@@ -57,7 +57,7 @@ export default function StoryPage({ params }: Props) {
 
           <Reveal delay={0.05}>
             <div className="mt-8 flex items-center gap-3 text-xs">
-              <span className="rounded-full bg-terracotta-50 px-3 py-1 font-medium text-terracotta-700">
+              <span className="rounded-full bg-blue-50 px-3 py-1 font-medium text-blue-700">
                 {story.tag}
               </span>
               <span className="inline-flex items-center gap-1 text-charcoal-muted">
@@ -110,7 +110,7 @@ export default function StoryPage({ params }: Props) {
             </p>
             <Link
               href="/#ayudar"
-              className="mt-6 inline-flex h-12 items-center justify-center rounded-full bg-terracotta-500 px-7 text-sm font-medium text-white transition-colors hover:bg-terracotta-600"
+              className="mt-6 inline-flex h-12 items-center justify-center rounded-full bg-blue-500 px-7 text-sm font-medium text-white transition-colors hover:bg-blue-600"
             >
               Apoyar ahora
             </Link>
@@ -136,7 +136,7 @@ export default function StoryPage({ params }: Props) {
                     className="object-cover transition-transform duration-700 ease-organic group-hover:scale-105"
                   />
                 </div>
-                <h3 className="mt-4 font-display text-xl font-normal text-charcoal transition-colors group-hover:text-terracotta-600">
+                <h3 className="mt-4 font-display text-xl font-normal text-charcoal transition-colors group-hover:text-blue-600">
                   {s.title}
                 </h3>
               </Link>

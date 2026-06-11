@@ -52,7 +52,7 @@ export function HistoriasView() {
                 </div>
                 <div className="flex flex-col justify-center p-8 sm:p-12">
                   <div className="flex items-center gap-3 text-xs">
-                    <span className="rounded-full bg-terracotta-50 px-3 py-1 font-medium text-terracotta-700">
+                    <span className="rounded-full bg-blue-50 px-3 py-1 font-medium text-blue-700">
                       {feature.tag}
                     </span>
                     <span className="inline-flex items-center gap-1 text-charcoal-muted">
@@ -65,7 +65,7 @@ export function HistoriasView() {
                   <p className="mt-4 text-pretty leading-relaxed text-charcoal-muted">
                     {feature.excerpt}
                   </p>
-                  <div className="mt-8 flex items-center gap-2 text-sm font-medium text-terracotta-600">
+                  <div className="mt-8 flex items-center gap-2 text-sm font-medium text-blue-600">
                     Leer la historia
                     <ArrowUpRight
                       size={16}
@@ -133,7 +133,7 @@ function StoryCard({ story, index }: { story: Story; index: number }) {
             <span>·</span>
             <span>{formatDate(story.date)}</span>
           </div>
-          <h3 className="mt-2 font-display text-2xl font-normal leading-snug tracking-tight text-charcoal transition-colors group-hover:text-terracotta-600">
+          <h3 className="mt-2 font-display text-2xl font-normal leading-snug tracking-tight text-charcoal transition-colors group-hover:text-blue-600">
             {story.title}
           </h3>
           <p className="mt-2 text-pretty leading-relaxed text-charcoal-muted">

@@ -66,7 +66,7 @@ export function Navbar() {
                 {active && (
                   <motion.span
                     layoutId="nav-underline"
-                    className="absolute -bottom-1.5 left-0 right-0 h-0.5 rounded-full bg-terracotta-500"
+                    className="absolute -bottom-1.5 left-0 right-0 h-0.5 rounded-full bg-blue-500"
                   />
                 )}
               </Link>

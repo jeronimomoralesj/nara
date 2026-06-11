@@ -43,9 +43,9 @@ export function DonateSection() {
           {/* Nequi / Daviplata premium widget */}
           <Reveal>
             <div className="relative flex h-full flex-col overflow-hidden rounded-3xl bg-charcoal p-8 text-white sm:p-10">
-              <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-terracotta-500/20 blur-3xl" />
+              <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-blue-500/20 blur-3xl" />
               <div className="relative">
-                <div className="flex items-center gap-2 text-terracotta-300">
+                <div className="flex items-center gap-2 text-blue-300">
                   <Smartphone size={20} />
                   <span className="text-sm font-medium uppercase tracking-[0.18em]">
                     Donación directa
@@ -74,14 +74,14 @@ export function DonateSection() {
                   <CopyButton
                     value={NEQUI}
                     label="Copiar Número"
-                    className="bg-terracotta-500 hover:bg-terracotta-600"
+                    className="bg-blue-500 hover:bg-blue-600"
                   />
                 </div>
               </div>
 
               <div className="relative mt-auto pt-10">
                 <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/5 p-4">
-                  <Sparkles size={18} className="mt-0.5 shrink-0 text-terracotta-300" />
+                  <Sparkles size={18} className="mt-0.5 shrink-0 text-blue-300" />
                   <p className="text-sm leading-relaxed text-white/70">
                     Al registrar tu donación recibes{" "}
                     <span className="font-medium text-white">
@@ -129,7 +129,7 @@ export function DonateSection() {
                     animate={{ opacity: 1 }}
                     className="flex flex-1 flex-col"
                   >
-                    <div className="flex items-center gap-2 text-terracotta-600">
+                    <div className="flex items-center gap-2 text-blue-600">
                       <Gift size={20} />
                       <span className="text-sm font-medium uppercase tracking-[0.16em]">
                         Registra tu donación
@@ -149,7 +149,7 @@ export function DonateSection() {
                           className={cn(
                             "rounded-2xl border px-2 py-3 text-sm font-semibold tracking-tight transition-all duration-200",
                             amount === value
-                              ? "border-terracotta-500 bg-terracotta-50 text-terracotta-700"
+                              ? "border-blue-500 bg-blue-50 text-blue-700"
                               : "border-charcoal/15 text-charcoal-muted hover:border-charcoal/30"
                           )}
                         >
@@ -164,7 +164,7 @@ export function DonateSection() {
                       className={cn(
                         "mt-2 flex w-full items-center gap-2 rounded-2xl border px-4 py-3 transition-all duration-200",
                         isCustom
-                          ? "border-terracotta-500 bg-terracotta-50"
+                          ? "border-blue-500 bg-blue-50"
                           : "border-charcoal/15 hover:border-charcoal/30"
                       )}
                     >

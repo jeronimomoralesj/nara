@@ -51,7 +51,7 @@ export function PymeSection() {
           {/* Pitch */}
           <div className="lg:col-span-6">
             <Reveal>
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-terracotta-300">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.18em] text-blue-300">
                 Alianzas con propósito · PYMEs
               </span>
             </Reveal>
@@ -73,7 +73,7 @@ export function PymeSection() {
               {benefits.map((b, i) => (
                 <Reveal key={b.title} delay={0.15 + i * 0.08}>
                   <div className="flex items-start gap-4">
-                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white/5 text-terracotta-300">
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-white/5 text-blue-300">
                       <b.icon size={20} strokeWidth={1.75} />
                     </span>
                     <div>
@@ -120,7 +120,7 @@ export function PymeSection() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                     >
-                      <div className="flex items-center gap-2 text-terracotta-300">
+                      <div className="flex items-center gap-2 text-blue-300">
                         <Building2 size={20} />
                         <span className="text-sm font-medium uppercase tracking-[0.16em]">
                           Postula tu empresa
@@ -139,7 +139,7 @@ export function PymeSection() {
                             defaultValue=""
                             aria-label="Sector"
                             className={cn(
-                              "h-12 w-full rounded-2xl border border-white/15 bg-white/5 px-4 text-sm text-white outline-none transition-all duration-300 focus:border-terracotta-400 focus:ring-4 focus:ring-terracotta-500/10",
+                              "h-12 w-full rounded-2xl border border-white/15 bg-white/5 px-4 text-sm text-white outline-none transition-all duration-300 focus:border-blue-400 focus:ring-4 focus:ring-blue-500/10",
                               state?.fieldErrors?.sector && "border-red-400/60"
                             )}
                           >
@@ -204,7 +204,7 @@ function DarkField({
         aria-label={placeholder}
         aria-invalid={Boolean(error)}
         className={cn(
-          "h-12 w-full rounded-2xl border border-white/15 bg-white/5 px-4 text-sm text-white outline-none transition-all duration-300 placeholder:text-white/40 focus:border-terracotta-400 focus:ring-4 focus:ring-terracotta-500/10",
+          "h-12 w-full rounded-2xl border border-white/15 bg-white/5 px-4 text-sm text-white outline-none transition-all duration-300 placeholder:text-white/40 focus:border-blue-400 focus:ring-4 focus:ring-blue-500/10",
           error && "border-red-400/60"
         )}
       />

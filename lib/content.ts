@@ -101,7 +101,7 @@ export const partners: Partner[] = [
       "El motor que enciende a Fundación Nara. Cada pulsera Agape se teje a mano y destina el 100% de sus ganancias a vivienda, salud y nutrición para adultos mayores en abandono. No es merchandising: es impacto que puedes llevar puesto.",
     badges: ["Socio Fundador", "100% Impacto", "Hecho en Colombia"],
     url: "https://agape-rust.vercel.app",
-    accent: "from-terracotta-400 to-terracotta-600",
+    accent: "from-blue-400 to-blue-600",
     initials: "AG",
     founding: true,
   },

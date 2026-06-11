@@ -9,27 +9,27 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Warm neutral foundation
-        alabaster: "#FAFAFA",
-        cream: "#FBF7F2",
-        sand: "#F2EAE0",
+        // Cool neutral foundation
+        alabaster: "#FAFBFC",
+        cream: "#F7F9FC",
+        sand: "#EEF1F7",
         charcoal: {
-          DEFAULT: "#1A1714",
-          soft: "#2B2723",
-          muted: "#6B6259",
+          DEFAULT: "#16181D",
+          soft: "#262A32",
+          muted: "#5E636E",
         },
-        // Single warm premium accent — sophisticated terracotta
-        terracotta: {
-          50: "#FBF4F0",
-          100: "#F4E2D7",
-          200: "#E7C3AE",
-          300: "#D9A084",
-          400: "#C97D5B",
-          500: "#B85C38",
-          600: "#9E4A2C",
-          700: "#7E3A23",
-          800: "#5E2C1B",
-          900: "#3F1E13",
+        // Single premium accent — sophisticated sapphire blue
+        blue: {
+          50: "#EEF3FB",
+          100: "#D7E3F4",
+          200: "#B0C7E9",
+          300: "#84A5D8",
+          400: "#5681C3",
+          500: "#2C5DA8",
+          600: "#234C8B",
+          700: "#1B3C6F",
+          800: "#152D54",
+          900: "#0F1F3A",
         },
       },
       fontFamily: {

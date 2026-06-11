@@ -133,7 +133,7 @@ export function CommunityFeed() {
                 </p>
                 <div className="mt-2 flex items-center gap-4 text-xs text-white/80">
                   <span className="inline-flex items-center gap-1">
-                    <Heart size={13} className="fill-terracotta-400 text-terracotta-400" />
+                    <Heart size={13} className="fill-blue-400 text-blue-400" />
                     {post.likes}
                   </span>
                   <span>{post.author}</span>
@@ -196,7 +196,7 @@ export function CommunityFeed() {
                 </p>
                 <div className="mt-3 flex items-center gap-4 text-xs text-charcoal-muted">
                   <span className="inline-flex items-center gap-1">
-                    <Heart size={14} className="fill-terracotta-500 text-terracotta-500" />
+                    <Heart size={14} className="fill-blue-500 text-blue-500" />
                     {active.likes}
                   </span>
                   <span className="inline-flex items-center gap-1">

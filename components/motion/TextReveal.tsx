@@ -16,7 +16,7 @@ interface TextRevealProps {
   delay?: number;
   /** Render the animation immediately instead of waiting for scroll. */
   immediate?: boolean;
-  /** Words to wrap in the terracotta accent color. */
+  /** Words to wrap in the blue accent color. */
   highlight?: string[];
 }
 
@@ -76,7 +76,7 @@ export function TextReveal({
           >
             <motion.span
               variants={word}
-              className={cn("inline-block", accent && "text-terracotta-500")}
+              className={cn("inline-block", accent && "text-blue-500")}
             >
               {w}
             </motion.span>
