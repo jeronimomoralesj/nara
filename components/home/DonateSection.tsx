@@ -43,7 +43,12 @@ export function DonateSection() {
           {/* Nequi / Daviplata premium widget */}
           <Reveal>
             <div className="relative flex h-full flex-col overflow-hidden rounded-3xl bg-charcoal p-8 text-white sm:p-10">
-              <div className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-blue-500/20 blur-3xl" />
+              <motion.div
+                aria-hidden
+                animate={{ x: [0, 24, -10, 0], y: [0, 18, -12, 0], scale: [1, 1.15, 0.95, 1] }}
+                transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
+                className="pointer-events-none absolute -right-16 -top-16 h-56 w-56 rounded-full bg-blue-500/25 blur-3xl"
+              />
               <div className="relative">
                 <div className="flex items-center gap-2 text-blue-300">
                   <Smartphone size={20} />

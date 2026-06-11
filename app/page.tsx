@@ -3,11 +3,27 @@ import { AgapeStory } from "@/components/home/AgapeStory";
 import { CommunityFeed } from "@/components/home/CommunityFeed";
 import { DonateSection } from "@/components/home/DonateSection";
 import { PymeSection } from "@/components/home/PymeSection";
+import { Marquee } from "@/components/motion/Marquee";
+
+const values = [
+  "Dignidad",
+  "Vivienda",
+  "Salud",
+  "Nutrición",
+  "Compañía",
+  "Transparencia",
+  "Esperanza",
+];
 
 export default function Home() {
   return (
     <main>
       <Hero />
+
+      <div className="border-y border-charcoal/10 bg-charcoal py-6 text-white">
+        <Marquee items={values} />
+      </div>
+
       <AgapeStory />
       <CommunityFeed />
       <DonateSection />

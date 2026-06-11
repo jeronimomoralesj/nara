@@ -7,6 +7,9 @@ import { ArrowRight, ArrowDown } from "lucide-react";
 import * as React from "react";
 import { Button } from "@/components/ui/Button";
 import { TextReveal } from "@/components/motion/TextReveal";
+import { Aurora } from "@/components/motion/Aurora";
+import { Magnetic } from "@/components/motion/Magnetic";
+import { CountUp } from "@/components/motion/CountUp";
 
 export function Hero() {
   const ref = React.useRef<HTMLElement>(null);
@@ -24,6 +27,7 @@ export function Hero() {
       id="inicio"
       className="relative flex min-h-[100svh] items-center overflow-hidden bg-cream bg-grain pt-16"
     >
+      <Aurora />
       <div className="container-content grid w-full items-center gap-10 px-6 pb-16 sm:px-8 lg:grid-cols-12 lg:gap-6 lg:px-12">
         {/* Copy */}
         <motion.div style={{ y: copyY }} className="lg:col-span-7">
@@ -65,15 +69,19 @@ export function Hero() {
             transition={{ delay: 1.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="mt-10 flex flex-col gap-3 sm:flex-row"
           >
-            <Button asChild size="lg">
-              <Link href="#ayudar">
-                Apoyar Ahora
-                <ArrowRight size={18} />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="ghost">
-              <Link href="#historia">Conocer la historia</Link>
-            </Button>
+            <Magnetic className="sm:inline-block">
+              <Button asChild size="lg" className="w-full sm:w-auto">
+                <Link href="#ayudar">
+                  Apoyar Ahora
+                  <ArrowRight size={18} />
+                </Link>
+              </Button>
+            </Magnetic>
+            <Magnetic strength={0.25} className="sm:inline-block">
+              <Button asChild size="lg" variant="ghost" className="w-full sm:w-auto">
+                <Link href="#historia">Conocer la historia</Link>
+              </Button>
+            </Magnetic>
           </motion.div>
 
           <motion.dl
@@ -83,13 +91,13 @@ export function Hero() {
             className="mt-14 grid max-w-lg grid-cols-3 gap-6 border-t border-charcoal/10 pt-8"
           >
             {[
-              { value: "100%", label: "de lo recaudado a su cuidado" },
-              { value: "+30", label: "adultos mayores acompañados" },
-              { value: "24/7", label: "atención y compañía" },
-            ].map((stat) => (
-              <div key={stat.label}>
+              { node: <CountUp value={100} suffix="%" />, label: "de lo recaudado a su cuidado" },
+              { node: <CountUp value={30} prefix="+" />, label: "adultos mayores acompañados" },
+              { node: <>24/7</>, label: "atención y compañía" },
+            ].map((stat, i) => (
+              <div key={i}>
                 <dt className="font-display text-3xl font-normal tracking-tight text-charcoal">
-                  {stat.value}
+                  {stat.node}
                 </dt>
                 <dd className="mt-1 text-xs leading-snug text-charcoal-muted">
                   {stat.label}
@@ -99,14 +107,18 @@ export function Hero() {
           </motion.dl>
         </motion.div>
 
-        {/* Image with parallax */}
+        {/* Image with parallax + gentle float */}
         <motion.div
           initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1] }}
           className="relative lg:col-span-5"
         >
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] bg-charcoal/5 shadow-[0_30px_80px_-20px_rgba(26,23,20,0.35)]">
+          <motion.div
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+            className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] bg-charcoal/5 shadow-[0_30px_80px_-20px_rgba(22,24,29,0.4)]"
+          >
             <motion.div style={{ y: imageY }} className="absolute inset-[-10%]">
               <Image
                 src="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?auto=format&fit=crop&w=1200&q=80"
@@ -118,15 +130,20 @@ export function Hero() {
               />
             </motion.div>
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 via-transparent to-transparent" />
-            <div className="absolute bottom-5 left-5 right-5 rounded-2xl bg-white/85 p-4 backdrop-blur-md">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.6, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute bottom-5 left-5 right-5 rounded-2xl bg-white/85 p-4 backdrop-blur-md"
+            >
               <p className="text-sm font-medium text-charcoal">
                 “Pensé que nadie volvería a preguntar por mí.”
               </p>
               <p className="mt-1 text-xs text-charcoal-muted">
                 — Rosa, 82 años · Hoy en casa
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </motion.div>
       </div>
 

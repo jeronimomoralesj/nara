@@ -8,6 +8,7 @@ import { registerCompany, type FormState } from "@/lib/actions";
 import { SubmitButton } from "@/components/ui/SubmitButton";
 import { Reveal } from "@/components/motion/Reveal";
 import { TextReveal } from "@/components/motion/TextReveal";
+import { Aurora } from "@/components/motion/Aurora";
 import { cn } from "@/lib/utils";
 
 const initialState: FormState | null = null;
@@ -45,7 +46,8 @@ export function PymeSection() {
   const [state, formAction] = useFormState(registerCompany, initialState);
 
   return (
-    <section id="pymes" className="section-padding bg-charcoal text-white">
+    <section id="pymes" className="relative overflow-hidden section-padding bg-charcoal text-white">
+      <Aurora variant="dark" />
       <div className="container-content">
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
           {/* Pitch */}

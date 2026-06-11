@@ -7,6 +7,7 @@ import { ArrowUpRight, Home, Stethoscope, Utensils } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
 import { TextReveal } from "@/components/motion/TextReveal";
+import { Tilt } from "@/components/motion/Tilt";
 
 const AGAPE_URL = "https://agape-rust.vercel.app";
 
@@ -123,7 +124,7 @@ export function AgapeStory() {
               whileHover={{ y: -8 }}
               className="group relative w-[260px] shrink-0 snap-start sm:w-[300px]"
             >
-              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.75rem] bg-blue-50">
+              <Tilt className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.75rem] bg-blue-50">
                 <Image
                   src={b.image}
                   alt={`Pulsera Agape ${b.name}`}
@@ -146,7 +147,7 @@ export function AgapeStory() {
                 <span className="absolute left-4 top-4 rounded-full bg-white/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-blue-700 backdrop-blur">
                   100% impacto
                 </span>
-              </div>
+              </Tilt>
               <div className="mt-4 px-1">
                 <h3 className="font-display text-xl font-normal tracking-tight text-charcoal">
                   {b.name}

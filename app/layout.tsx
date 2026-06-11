@@ -3,6 +3,7 @@ import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { ScrollProgress } from "@/components/motion/ScrollProgress";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -52,6 +53,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${inter.variable} ${fraunces.variable}`}>
       <body className="min-h-screen bg-cream">
+        <ScrollProgress />
         <Navbar />
         {children}
         <Footer />
