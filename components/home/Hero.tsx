@@ -25,7 +25,7 @@ export function Hero() {
     <section
       ref={ref}
       id="inicio"
-      className="relative flex min-h-[85svh] items-center overflow-hidden bg-cream bg-grain pt-16"
+      className="relative flex min-h-[50svh] items-center overflow-hidden bg-cream bg-grain pt-16"
     >
       <Aurora />
       <div className="container-content grid w-full items-center gap-10 px-6 pb-16 sm:px-8 lg:grid-cols-12 lg:gap-6 lg:px-12">
@@ -125,19 +125,6 @@ export function Hero() {
               />
             </motion.div>
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 via-transparent to-transparent" />
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.6, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute bottom-5 left-5 right-5 rounded-2xl bg-white/85 p-4 backdrop-blur-md"
-            >
-              <p className="text-sm font-medium text-charcoal">
-                "Pensé que nadie volvería a preguntar por mí."
-              </p>
-              <p className="mt-1 text-xs text-charcoal-muted">
-                — Rosa, 82 años · Hoy en un hogar seguro
-              </p>
-            </motion.div>
           </motion.div>
         </motion.div>
       </div>

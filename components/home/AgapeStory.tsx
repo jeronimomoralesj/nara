@@ -149,6 +149,68 @@ export function AgapeStory({ products = [] }: Props) {
             </motion.article>
           ))}
 
+          {/* Special / custom product cards */}
+          {[
+            {
+              href: "/agape/personalizar",
+              badge: "Personalizable",
+              badgeColor: "text-blue-700 bg-white/85",
+              bg: "bg-gradient-to-br from-blue-100 to-indigo-200",
+              name: "Crea tu pulsera o collar",
+              desc: "Elige los colores de tus pepas, con Virgen Milagrosa y crucifijo.",
+              price: "Desde $ 22.000",
+            },
+            {
+              href: "/agape/collar-nombres",
+              badge: "Personalizable",
+              badgeColor: "text-blue-700 bg-white/85",
+              bg: "bg-gradient-to-br from-violet-100 to-blue-200",
+              name: "Crea tu collar de nombres",
+              desc: "Hasta 5 nombres en cuentas de letras con pepas de colores.",
+              price: "Desde $ 35.000",
+            },
+            {
+              href: "/agape/pulsera-colombia",
+              badge: "Edición limitada",
+              badgeColor: "text-yellow-900 bg-yellow-300/90",
+              bg: "bg-gradient-to-br from-yellow-200 via-blue-200 to-red-200",
+              name: "Pulsera Colombia",
+              desc: "Tricolor con Virgen Milagrosa. Solo hasta el final del Mundial 2026.",
+              price: "Desde $ 20.000",
+            },
+          ].map((card, i) => (
+            <motion.article
+              key={card.href}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.7, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ y: -8 }}
+              className="group relative w-[260px] shrink-0 snap-start sm:w-[300px]"
+            >
+              <Link href={card.href} className="block">
+                <div className={`relative aspect-[4/5] w-full overflow-hidden rounded-[1.75rem] ${card.bg}`}>
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/50 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-90" />
+                  <div className="absolute inset-x-0 bottom-0 translate-y-2 p-5 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                    <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-medium text-charcoal">
+                      {card.price}
+                      <ArrowUpRight size={15} />
+                    </span>
+                  </div>
+                  <span className={`absolute left-4 top-4 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-wide backdrop-blur ${card.badgeColor}`}>
+                    {card.badge}
+                  </span>
+                </div>
+                <div className="mt-4 px-1">
+                  <h3 className="font-display text-xl font-normal tracking-tight text-charcoal">
+                    {card.name}
+                  </h3>
+                  <p className="mt-1 text-sm text-charcoal-muted">{card.desc}</p>
+                </div>
+              </Link>
+            </motion.article>
+          ))}
+
           {/* Tail CTA card */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}

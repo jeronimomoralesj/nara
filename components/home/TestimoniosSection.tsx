@@ -171,10 +171,10 @@ export function TestimoniosSection() {
           </p>
         </Reveal>
 
-        {/* 2×2 grid — height-capped so all 4 are visible on every screen */}
+        {/* 2×2 grid — portrait-oriented, narrower columns */}
         <div
-          className="mt-10 grid grid-cols-2 gap-3 sm:gap-4"
-          style={{ height: "clamp(280px, 55vh, 480px)" }}
+          className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 mx-auto"
+          style={{ height: "clamp(320px, 60vh, 520px)", maxWidth: "min(100%, 560px)" }}
         >
           {testimonios.map((t, i) => (
             <VideoGridCard

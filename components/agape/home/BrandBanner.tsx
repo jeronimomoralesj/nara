@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Sparkles, Star, Wand2 } from 'lucide-react';
@@ -24,14 +25,23 @@ export default function BrandBanner() {
           Amar como Dios nos ama
         </motion.p>
 
-        <motion.h1
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: EASE, delay: 0.1 }}
-          className="mt-3 font-logo text-6xl leading-none text-royal sm:text-7xl lg:text-8xl"
+          className="mt-3 flex flex-col items-center"
         >
-          ÁGAPE
-        </motion.h1>
+          <h1 className="font-logo text-6xl leading-none text-royal sm:text-7xl lg:text-8xl">
+            ÁGAPE
+          </h1>
+          <div className="mt-3 flex items-center gap-2.5">
+            <span className="text-[0.55rem] font-semibold uppercase tracking-[0.35em] text-royal/40">by</span>
+            <div className="relative h-5 w-5 shrink-0">
+              <Image src="/logo-nara.jpg" alt="Fundación Nara" fill sizes="20px" className="object-contain" />
+            </div>
+            <span className="text-[0.6rem] font-semibold uppercase tracking-[0.25em] text-royal/60">Fundación Nara</span>
+          </div>
+        </motion.div>
 
         <motion.p
           initial={{ opacity: 0, y: 14 }}

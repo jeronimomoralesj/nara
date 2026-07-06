@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Fraunces, Titan_One } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import { NaraShell } from "@/components/NaraShell";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
 
 const inter = Inter({
@@ -61,9 +60,9 @@ export default function RootLayout({
     <html lang="es" className={`${inter.variable} ${fraunces.variable} ${titanOne.variable}`}>
       <body className="min-h-screen bg-cream">
         <ScrollProgress />
-        <Navbar />
-        {children}
-        <Footer />
+        <NaraShell>
+          {children}
+        </NaraShell>
       </body>
     </html>
   );

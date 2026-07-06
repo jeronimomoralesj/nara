@@ -29,7 +29,7 @@ export function FloatingAgapeButton() {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 24, scale: 0.88 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed bottom-7 left-1/2 z-50 -translate-x-1/2"
+          className="fixed bottom-7 left-0 right-0 z-50 flex justify-center"
         >
           <Link
             href="/agape"

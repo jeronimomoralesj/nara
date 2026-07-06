@@ -1,10 +1,11 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowLeft, Menu, ShoppingBag, X } from 'lucide-react';
+import { Menu, ShoppingBag, X } from 'lucide-react';
 import { useCart } from '@/components/agape/cart/CartContext';
 
 const BASE_LINKS = [
@@ -58,23 +59,32 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 md:h-20 lg:px-8">
-        {/* Wordmark + back link */}
-        <div className="flex flex-col gap-0.5">
+        {/* Partnership wordmark: Nara | line | Ágape */}
+        <div className="flex items-center gap-3">
           <Link
             href="/"
-            className="hidden items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-royal/45 transition-colors hover:text-royal sm:flex"
+            className="group flex items-center gap-2 opacity-60 transition-opacity duration-300 hover:opacity-100"
+            aria-label="Fundación Nara"
           >
-            <ArrowLeft size={10} />
-            Fundación Nara
+            <div className="relative h-8 w-8 shrink-0">
+              <Image src="/logo-nara.jpg" alt="Fundación Nara" fill sizes="32px" className="object-contain" />
+            </div>
+            <span className="hidden flex-col leading-tight sm:flex">
+              <span className="text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-royal/70">Fundación</span>
+              <span className="text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-royal">Nara</span>
+            </span>
           </Link>
+
+          <div className="h-8 w-px bg-oro/40" />
+
           <Link href="/agape" className="group flex flex-col leading-none">
-          <span className="font-logo text-2xl tracking-wide text-royal transition-colors duration-300 group-hover:text-royal-deep md:text-3xl">
-            ÁGAPE
-          </span>
-          <span className="hidden text-[0.55rem] font-semibold uppercase tracking-[0.32em] text-oro-deep sm:block">
-            Amar como Dios nos ama
-          </span>
-        </Link>
+            <span className="font-logo text-2xl tracking-wide text-royal transition-colors duration-300 group-hover:text-royal-deep md:text-3xl">
+              ÁGAPE
+            </span>
+            <span className="hidden text-[0.55rem] font-semibold uppercase tracking-[0.32em] text-oro-deep sm:block">
+              Amar como Dios nos ama
+            </span>
+          </Link>
         </div>
 
         {/* Desktop nav */}
@@ -167,8 +177,7 @@ export default function Header() {
                   onClick={() => setMenuOpen(false)}
                   className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-[0.15em] text-royal/50 transition-colors hover:text-royal"
                 >
-                  <ArrowLeft size={14} />
-                  Volver a Fundación Nara
+                  ← Volver a Fundación Nara
                 </Link>
               </motion.li>
               <li className="my-1 h-px bg-oro/15" />
