@@ -39,7 +39,7 @@ export async function fetchProducts(limit?: number): Promise<Product[]> {
 export async function fetchProductById(id: string): Promise<Product | null> {
   try {
     await dbConnect();
-    const doc = await ProductModel.findOne({ _id: id, isActive: true }).lean();
+    const doc = await ProductModel.findOne({ _id: id }).lean();
     return doc ? toPublicImages(JSON.parse(JSON.stringify(doc))) : null;
   } catch (error) {
     console.error('fetchProductById: base de datos no disponible', error);

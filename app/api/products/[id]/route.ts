@@ -61,7 +61,7 @@ export async function PUT(request: NextRequest, { params }: Params) {
     if (!product) {
       return NextResponse.json({ error: 'Producto no encontrado' }, { status: 404 });
     }
-    await pingIndexNow(['/', `/producto/${params.id}`, '/sitemap.xml']);
+    await pingIndexNow(['/', `/agape/producto/${params.id}`, '/sitemap.xml']);
     return NextResponse.json(toPublicImages(product));
   } catch (error) {
     console.error('PUT /api/products/[id]', error);

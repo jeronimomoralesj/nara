@@ -37,7 +37,7 @@ export function absoluteUrl(path: string): string {
 }
 
 export function productUrl(product: Pick<Product, '_id'>): string {
-  return `${SITE_URL}/producto/${product._id}`;
+  return `${SITE_URL}/agape/producto/${product._id}`;
 }
 
 /**

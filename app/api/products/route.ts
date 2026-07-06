@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
       stock: body.stock ?? 0,
       isActive: body.isActive ?? true,
     });
-    await pingIndexNow(['/', `/producto/${product._id}`, '/sitemap.xml']);
+    await pingIndexNow(['/', `/agape/producto/${product._id}`, '/sitemap.xml']);
     return NextResponse.json(toPublicImages(product.toObject()), { status: 201 });
   } catch (error) {
     console.error('POST /api/products', error);

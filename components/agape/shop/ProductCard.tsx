@@ -25,7 +25,7 @@ export default function ProductCard({ product }: { product: Product }) {
       onHoverEnd={() => setHovered(false)}
       className="group relative overflow-hidden rounded-3xl border border-oro/15 bg-white/80 shadow-card transition-shadow duration-500 hover:shadow-luxe"
     >
-      <Link href={`/producto/${product._id}`} className="block">
+      <Link href={`/agape/producto/${product._id}`} className="block">
         {/* Image with zoom + secondary-angle crossfade */}
         <div className="relative aspect-[4/5] overflow-hidden bg-cielo-100">
           <motion.div
@@ -96,7 +96,9 @@ export default function ProductCard({ product }: { product: Product }) {
             {product.title}
           </h3>
           <p className="mt-1 line-clamp-2 hidden text-sm leading-relaxed text-royal/60 sm:block">
-            {product.description}
+            {product.description.length > 100
+              ? product.description.slice(0, 100) + '…'
+              : product.description}
           </p>
           <p className="mt-2 flex flex-wrap items-baseline gap-x-2 sm:mt-3">
             <span className="font-serif text-lg font-bold text-royal sm:text-xl">

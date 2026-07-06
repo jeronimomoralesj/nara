@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
-    alternates: { canonical: `/producto/${product._id}` },
+    alternates: { canonical: `/agape/producto/${product._id}` },
     openGraph: {
       type: 'website',
       locale: 'es_CO',
