@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { Sparkles, Star, Wand2 } from 'lucide-react';
+import { Sparkles, Wand2 } from 'lucide-react';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -74,13 +74,6 @@ export default function BrandBanner() {
           >
             <Sparkles className="h-3.5 w-3.5" />
             Crea tu collar de nombres
-          </Link>
-          <Link
-            href="/agape/pulsera-colombia"
-            className="inline-flex items-center gap-2 rounded-full border border-oro bg-oro/10 px-6 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-oro-deep transition-all duration-300 hover:bg-oro/20 hover:shadow-aura-soft"
-          >
-            <Star className="h-3.5 w-3.5" />
-            Pulsera Colombia · Mundial 2026
           </Link>
         </motion.div>
 

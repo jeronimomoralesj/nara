@@ -4,28 +4,21 @@ import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Home, Stethoscope, Utensils } from "lucide-react";
+import { ArrowUpRight, Sparkles, Wand2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/motion/Reveal";
 import { TextReveal } from "@/components/motion/TextReveal";
-import { Tilt } from "@/components/motion/Tilt";
 import type { Product } from "@/lib/agape/types";
 
 const AGAPE_URL = "/agape";
 
-// Fallback cards shown when DB is not yet connected
 const FALLBACK_BRACELETS = [
   { name: "Amanecer", desc: "Tonos cálidos tejidos a mano", image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=80" },
   { name: "Raíz",    desc: "Hilo encerado y cuentas de madera", image: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=900&q=80" },
   { name: "Abrazo",  desc: "Trenzado doble en terracota", image: "https://images.unsplash.com/photo-1620061145951-5e3b0e3f2b9e?auto=format&fit=crop&w=900&q=80" },
   { name: "Sereno",  desc: "Minimalismo en tonos arena", image: "https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?auto=format&fit=crop&w=900&q=80" },
   { name: "Origen",  desc: "Edición fundadora limitada", image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=900&q=80" },
-];
-
-const allocation = [
-  { icon: Home, label: "Vivienda" },
-  { icon: Stethoscope, label: "Salud" },
-  { icon: Utensils, label: "Nutrición" },
+  { name: "Paz",     desc: "Blanco y plata, tejido en seda", image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=900&q=80" },
 ];
 
 interface Props {
@@ -42,14 +35,40 @@ export function AgapeStory({ products = [] }: Props) {
         id: String(p._id),
       }))
     : FALLBACK_BRACELETS.map((b) => ({ ...b, price: undefined, id: undefined }));
+
   return (
     <section id="historia" className="section-padding bg-white">
       <div className="container-content">
+
+        {/* ── Header ─────────────────────────────────────────── */}
         <div className="grid items-end gap-8 lg:grid-cols-12">
           <div className="lg:col-span-8">
             <Reveal>
-              <span className="eyebrow">La historia viva · Agape</span>
+              <span className="eyebrow">La historia viva</span>
             </Reveal>
+
+            {/* Ágape × Nara logo treatment */}
+            <div className="mt-3 flex items-center gap-3">
+              <span className="font-logo text-4xl leading-none text-blue-500 sm:text-5xl">
+                ÁGAPE
+              </span>
+              <span className="text-[0.5rem] font-semibold uppercase tracking-[0.3em] text-charcoal/35">
+                by
+              </span>
+              <div className="relative h-6 w-6 shrink-0 overflow-hidden rounded-full">
+                <Image
+                  src="/logo-nara.jpg"
+                  alt="Fundación Nara"
+                  fill
+                  sizes="24px"
+                  className="object-contain"
+                />
+              </div>
+              <span className="text-sm font-semibold uppercase tracking-[0.18em] text-charcoal/65">
+                Nara
+              </span>
+            </div>
+
             <TextReveal
               as="h2"
               text="Un hilo que sostiene una vida."
@@ -59,7 +78,7 @@ export function AgapeStory({ products = [] }: Props) {
             <Reveal delay={0.1}>
               <p className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-charcoal-muted">
                 Fundación Nara nace de la mano de{" "}
-                <span className="font-medium text-charcoal">Agape</span>. Cada
+                <span className="font-medium text-charcoal">Ágape</span>. Cada
                 pulsera se teje a mano y el{" "}
                 <span className="font-medium text-blue-600">
                   100% de sus ganancias
@@ -74,7 +93,7 @@ export function AgapeStory({ products = [] }: Props) {
             <Reveal delay={0.15}>
               <Button asChild size="lg">
                 <Link href={AGAPE_URL}>
-                  Visitar Agape
+                  Visitar Ágape
                   <ArrowUpRight size={18} />
                 </Link>
               </Button>
@@ -82,160 +101,95 @@ export function AgapeStory({ products = [] }: Props) {
           </div>
         </div>
 
-        {/* Allocation chips */}
-        <Reveal delay={0.1}>
-          <div className="mt-8 flex flex-wrap gap-3">
-            {allocation.map((a) => (
-              <span
-                key={a.label}
-                className="inline-flex items-center gap-2 rounded-full border border-charcoal/10 bg-cream px-4 py-2 text-sm font-medium text-charcoal"
-              >
-                <a.icon size={16} className="text-blue-500" />
-                {a.label}
-              </span>
-            ))}
-          </div>
-        </Reveal>
-      </div>
-
-      {/* Horizontal showcase — breaks the container for an immersive edge */}
-      <div className="mt-14">
-        <div className="no-scrollbar flex snap-x snap-mandatory gap-5 overflow-x-auto px-6 pb-4 sm:px-8 lg:px-12 [scroll-padding-left:1.5rem]">
+        {/* ── Product grid ───────────────────────────────────── */}
+        <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3">
           {cards.map((b, i) => (
-            <motion.article
+            <motion.div
               key={b.name + i}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
-              transition={{
-                duration: 0.7,
-                delay: (i % 3) * 0.08,
-                ease: [0.22, 1, 0.36, 1],
-              }}
-              whileHover={{ y: -8 }}
-              className="group relative w-[260px] shrink-0 snap-start sm:w-[300px]"
+              transition={{ duration: 0.55, delay: (i % 3) * 0.07, ease: [0.22, 1, 0.36, 1] }}
             >
-              <Tilt className="relative aspect-[4/5] w-full overflow-hidden rounded-[1.75rem] bg-blue-50">
-                {b.image && (
-                  <Image
-                    src={b.image}
-                    alt={`Pulsera Ágape ${b.name}`}
-                    fill
-                    sizes="300px"
-                    unoptimized={b.image.startsWith("/api/")}
-                    className="object-cover transition-transform duration-700 ease-organic group-hover:scale-110"
-                  />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal/50 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-90" />
-                <div className="absolute inset-x-0 bottom-0 translate-y-2 p-5 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                  <Link
-                    href={b.id ? `/agape/producto/${b.id}` : AGAPE_URL}
-                    className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-medium text-charcoal"
-                  >
-                    {b.price ? `COP ${b.price.toLocaleString("es-CO")}` : "Apoyar con esta"}
-                    <ArrowUpRight size={15} />
-                  </Link>
-                </div>
-                <span className="absolute left-4 top-4 rounded-full bg-white/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-blue-700 backdrop-blur">
-                  100% impacto
-                </span>
-              </Tilt>
-              <div className="mt-4 px-1">
-                <h3 className="font-display text-xl font-normal tracking-tight text-charcoal">
-                  {b.name}
-                </h3>
-                <p className="mt-1 text-sm text-charcoal-muted">{b.desc}</p>
-              </div>
-            </motion.article>
-          ))}
-
-          {/* Special / custom product cards */}
-          {[
-            {
-              href: "/agape/personalizar",
-              badge: "Personalizable",
-              badgeColor: "text-blue-700 bg-white/85",
-              bg: "bg-gradient-to-br from-blue-100 to-indigo-200",
-              name: "Crea tu pulsera o collar",
-              desc: "Elige los colores de tus pepas, con Virgen Milagrosa y crucifijo.",
-              price: "Desde $ 22.000",
-            },
-            {
-              href: "/agape/collar-nombres",
-              badge: "Personalizable",
-              badgeColor: "text-blue-700 bg-white/85",
-              bg: "bg-gradient-to-br from-violet-100 to-blue-200",
-              name: "Crea tu collar de nombres",
-              desc: "Hasta 5 nombres en cuentas de letras con pepas de colores.",
-              price: "Desde $ 35.000",
-            },
-            {
-              href: "/agape/pulsera-colombia",
-              badge: "Edición limitada",
-              badgeColor: "text-yellow-900 bg-yellow-300/90",
-              bg: "bg-gradient-to-br from-yellow-200 via-blue-200 to-red-200",
-              name: "Pulsera Colombia",
-              desc: "Tricolor con Virgen Milagrosa. Solo hasta el final del Mundial 2026.",
-              price: "Desde $ 20.000",
-            },
-          ].map((card, i) => (
-            <motion.article
-              key={card.href}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.7, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-              whileHover={{ y: -8 }}
-              className="group relative w-[260px] shrink-0 snap-start sm:w-[300px]"
-            >
-              <Link href={card.href} className="block">
-                <div className={`relative aspect-[4/5] w-full overflow-hidden rounded-[1.75rem] ${card.bg}`}>
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/50 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-90" />
-                  <div className="absolute inset-x-0 bottom-0 translate-y-2 p-5 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                    <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-medium text-charcoal">
-                      {card.price}
-                      <ArrowUpRight size={15} />
-                    </span>
-                  </div>
-                  <span className={`absolute left-4 top-4 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-wide backdrop-blur ${card.badgeColor}`}>
-                    {card.badge}
+              <Link
+                href={b.id ? `/agape/producto/${b.id}` : AGAPE_URL}
+                className="group block"
+              >
+                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-blue-50">
+                  {b.image && (
+                    <Image
+                      src={b.image}
+                      alt={`Pulsera Ágape ${b.name}`}
+                      fill
+                      sizes="(max-width:640px) 50vw, (max-width:1024px) 33vw, 280px"
+                      unoptimized={b.image.startsWith("/api/")}
+                      className="object-cover transition-transform duration-700 ease-organic group-hover:scale-105"
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/60 via-transparent to-transparent" />
+                  <span className="absolute left-3 top-3 rounded-full bg-white/85 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-blue-700 backdrop-blur sm:left-4 sm:top-4 sm:text-[11px]">
+                    100% impacto
                   </span>
+                  {b.price && (
+                    <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4">
+                      <span className="inline-flex items-center gap-1 rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold text-charcoal backdrop-blur sm:text-sm">
+                        COP {b.price.toLocaleString("es-CO")}
+                        <ArrowUpRight size={13} />
+                      </span>
+                    </div>
+                  )}
                 </div>
-                <div className="mt-4 px-1">
-                  <h3 className="font-display text-xl font-normal tracking-tight text-charcoal">
-                    {card.name}
+                <div className="mt-3 px-0.5">
+                  <h3 className="font-display text-base font-normal tracking-tight text-charcoal transition-colors group-hover:text-blue-600 sm:text-lg">
+                    {b.name}
                   </h3>
-                  <p className="mt-1 text-sm text-charcoal-muted">{card.desc}</p>
+                  <p className="mt-0.5 text-xs text-charcoal-muted sm:text-sm line-clamp-1">{b.desc}</p>
                 </div>
               </Link>
-            </motion.article>
+            </motion.div>
           ))}
-
-          {/* Tail CTA card */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            whileHover={{ y: -8 }}
-            className="w-[260px] shrink-0 snap-start sm:w-[300px]"
-          >
-          <Link
-            href={AGAPE_URL}
-            className="group flex h-full flex-col items-center justify-center rounded-[1.75rem] border border-dashed border-blue-300 bg-cream p-8 text-center"
-          >
-            <span className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-500 text-white transition-transform duration-500 group-hover:rotate-45">
-              <ArrowUpRight size={24} />
-            </span>
-            <p className="mt-5 font-display text-xl font-normal text-charcoal">
-              Ver toda la colección
-            </p>
-            <p className="mt-2 text-sm text-charcoal-muted">
-              Cada pieza, una historia restaurada.
-            </p>
-          </Link>
-          </motion.div>
         </div>
+
+        {/* ── "Ver toda la colección" link ───────────────────── */}
+        <Reveal delay={0.1}>
+          <div className="mt-8 flex justify-center">
+            <Link
+              href={AGAPE_URL}
+              className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 underline-offset-4 hover:underline"
+            >
+              Ver toda la colección
+              <ArrowUpRight size={15} />
+            </Link>
+          </div>
+        </Reveal>
+
+        {/* ── Personalised options ───────────────────────────── */}
+        <Reveal delay={0.15}>
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            <Link
+              href="/agape/personalizar"
+              className="inline-flex items-center gap-2 rounded-full border border-blue-300 bg-blue-50 px-5 py-2.5 text-sm font-medium text-blue-700 transition-colors hover:bg-blue-100"
+            >
+              <Wand2 size={15} />
+              Personaliza tu propia pulsera
+            </Link>
+            <Link
+              href="/agape/personalizar"
+              className="inline-flex items-center gap-2 rounded-full border border-blue-300 bg-blue-50 px-5 py-2.5 text-sm font-medium text-blue-700 transition-colors hover:bg-blue-100"
+            >
+              <Wand2 size={15} />
+              Personaliza tu collar
+            </Link>
+            <Link
+              href="/agape/collar-nombres"
+              className="inline-flex items-center gap-2 rounded-full border border-blue-300 bg-blue-50 px-5 py-2.5 text-sm font-medium text-blue-700 transition-colors hover:bg-blue-100"
+            >
+              <Sparkles size={15} />
+              Collar con nombres
+            </Link>
+          </div>
+        </Reveal>
+
       </div>
     </section>
   );
