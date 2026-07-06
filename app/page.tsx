@@ -1,9 +1,7 @@
 import { Hero } from "@/components/home/Hero";
 import { AgapeStory } from "@/components/home/AgapeStory";
-import { CommunityFeed } from "@/components/home/CommunityFeed";
-import { DonateSection } from "@/components/home/DonateSection";
-import { PymeSection } from "@/components/home/PymeSection";
 import { TestimoniosSection } from "@/components/home/TestimoniosSection";
+import { PymeSection } from "@/components/home/PymeSection";
 import { VolunteerSection } from "@/components/home/VolunteerSection";
 import { Marquee } from "@/components/motion/Marquee";
 
@@ -30,8 +28,6 @@ export default function Home() {
 
       <AgapeStory />
       <TestimoniosSection />
-      <CommunityFeed />
-      <DonateSection />
       <VolunteerSection />
       <PymeSection />
     </main>

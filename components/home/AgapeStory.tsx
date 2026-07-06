@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import * as React from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Home, Stethoscope, Utensils } from "lucide-react";
@@ -9,7 +10,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { TextReveal } from "@/components/motion/TextReveal";
 import { Tilt } from "@/components/motion/Tilt";
 
-const AGAPE_URL = "https://agape-rust.vercel.app";
+const AGAPE_URL = "/agape";
 
 const bracelets = [
   {
@@ -82,10 +83,10 @@ export function AgapeStory() {
           <div className="lg:col-span-4 lg:text-right">
             <Reveal delay={0.15}>
               <Button asChild size="lg">
-                <a href={AGAPE_URL} target="_blank" rel="noopener noreferrer">
+                <Link href={AGAPE_URL}>
                   Visitar Agape
                   <ArrowUpRight size={18} />
-                </a>
+                </Link>
               </Button>
             </Reveal>
           </div>
@@ -134,15 +135,13 @@ export function AgapeStory() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-charcoal/50 via-transparent to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-90" />
                 <div className="absolute inset-x-0 bottom-0 translate-y-2 p-5 opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                  <a
+                  <Link
                     href={AGAPE_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-sm font-medium text-charcoal"
                   >
                     Apoyar con esta
                     <ArrowUpRight size={15} />
-                  </a>
+                  </Link>
                 </div>
                 <span className="absolute left-4 top-4 rounded-full bg-white/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-blue-700 backdrop-blur">
                   100% impacto
@@ -158,16 +157,17 @@ export function AgapeStory() {
           ))}
 
           {/* Tail CTA card */}
-          <motion.a
-            href={AGAPE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             whileHover={{ y: -8 }}
-            className="group flex w-[260px] shrink-0 snap-start flex-col items-center justify-center rounded-[1.75rem] border border-dashed border-blue-300 bg-cream p-8 text-center sm:w-[300px]"
+            className="w-[260px] shrink-0 snap-start sm:w-[300px]"
+          >
+          <Link
+            href={AGAPE_URL}
+            className="group flex h-full flex-col items-center justify-center rounded-[1.75rem] border border-dashed border-blue-300 bg-cream p-8 text-center"
           >
             <span className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-500 text-white transition-transform duration-500 group-hover:rotate-45">
               <ArrowUpRight size={24} />
@@ -178,7 +178,8 @@ export function AgapeStory() {
             <p className="mt-2 text-sm text-charcoal-muted">
               Cada pieza, una historia restaurada.
             </p>
-          </motion.a>
+          </Link>
+          </motion.div>
         </div>
       </div>
     </section>
