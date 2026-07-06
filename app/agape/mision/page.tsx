@@ -19,7 +19,7 @@ const PILLARS = [
   {
     icon: <Flame className="h-6 w-6" strokeWidth={1.5} />,
     title: 'Anunciar',
-    text: 'Queremos llevar la Palabra de Dios a donde las palabras no siempre llegan: a la muñeca que escribe, que trabaja, que saluda, que consuela. Que cada cristal sea una chispa que encienda conversaciones sobre la fe y siembre luz en lo cotidiano.',
+    text: 'Queremos llevar la Palabra de Dios a donde las palabras no siempre llegan: a la muñeca que escribe, que trabaja, que saluda, que consuela. Que cada pieza sea una chispa que encienda conversaciones sobre la fe y siembre luz en lo cotidiano.',
   },
   {
     icon: <Sparkles className="h-6 w-6" strokeWidth={1.5} />,
@@ -50,7 +50,7 @@ export default function MisionPage() {
               toda persona merece encontrar la paz en su corazón
             </strong>
             . En un mundo que corre, que grita, que exige, nosotros elegimos lo pequeño:
-            un hilo, unos cristales, una cruz — y la oración que cabe en una muñeca.
+            unas pepitas, un dije, una cruz — y la oración que cabe en una muñeca.
           </p>
           <p>
             Nuestra misión es doble, como las dos manos que se juntan para orar: ayudar a

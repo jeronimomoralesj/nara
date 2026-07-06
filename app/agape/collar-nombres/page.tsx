@@ -29,7 +29,7 @@ export default function CollarNombresPage() {
         <div className="gold-divider mt-6" />
         <p className="mx-auto mt-5 max-w-xl text-balance text-royal/65">
           Escribe los nombres de quienes llevas en el corazón — hasta cinco — y
-          elige los colores de tus pepas. Lo tejemos a mano, letra por letra,
+          elige los colores de tus pepas. Lo armamos a mano, letra por letra,
           como un abrazo que se lleva puesto.
         </p>
       </Reveal>

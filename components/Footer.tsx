@@ -38,9 +38,9 @@ export function Footer() {
           <div className="lg:col-span-5">
             <Logo />
             <p className="mt-5 max-w-sm text-pretty text-sm leading-relaxed text-charcoal-muted">
-              Restauramos la dignidad de los adultos mayores abandonados en
-              Colombia, una vida a la vez. Vivienda, salud y nutrición para
-              quienes el mundo olvidó.
+              Ayudamos a personas vulnerables en Colombia, una vida a la vez.
+              Donamos mercados y alimentos a quienes viven en la calle o en
+              el abandono.
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-3">

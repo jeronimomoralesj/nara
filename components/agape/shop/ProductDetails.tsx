@@ -142,9 +142,9 @@ export default function ProductDetails({ product }: { product: Product }) {
           defaultOpen
         >
           <p>
-            Cristales facetados de alta calidad y componentes con baño de oro de 18k,
-            ensamblados a mano. Hipoalergénica y pensada para el uso diario. Evita el
-            contacto prolongado con agua y perfumes para conservar su brillo.
+            Pepitas artesanales ensambladas a mano, con dije de Virgen Milagrosa y
+            crucifijo. Pieza artesanal, pensada para el uso diario. Evita el
+            contacto prolongado con agua y perfumes para conservar su acabado.
           </p>
         </Accordion>
       </div>

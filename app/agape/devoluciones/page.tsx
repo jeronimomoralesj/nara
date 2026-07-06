@@ -37,8 +37,8 @@ const SECTIONS = [
       <>
         <p>
           Cada pulsera Ágape es ensamblada a mano y revisada antes de enviarse. Si aun así
-          recibes una pieza con un <strong>defecto de fabricación</strong> (cristales
-          sueltos, broche defectuoso, baño de oro con imperfecciones), tienes{' '}
+          recibes una pieza con un <strong>defecto de fabricación</strong> (pepitas
+          sueltas, broche defectuoso, imperfecciones en el acabado), tienes{' '}
           <strong>30 días calendario</strong> desde la entrega para solicitar el cambio.
         </p>
         <p className="mt-3">

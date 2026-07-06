@@ -236,7 +236,7 @@ export default function ProductForm({
             rows={3}
             value={values.description}
             onChange={(e) => set('description', e.target.value)}
-            placeholder="Cristales celestes con dije de cruz bañado en oro…"
+            placeholder="Pepitas azul cielo con dije de Virgen Milagrosa y crucifijo…"
             className="input-luxe resize-none"
           />
         </div>

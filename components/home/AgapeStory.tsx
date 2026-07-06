@@ -13,12 +13,12 @@ import type { Product } from "@/lib/agape/types";
 const AGAPE_URL = "/agape";
 
 const FALLBACK_BRACELETS = [
-  { name: "Amanecer", desc: "Tonos cálidos tejidos a mano", image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=80" },
-  { name: "Raíz",    desc: "Hilo encerado y cuentas de madera", image: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=900&q=80" },
-  { name: "Abrazo",  desc: "Trenzado doble en terracota", image: "https://images.unsplash.com/photo-1620061145951-5e3b0e3f2b9e?auto=format&fit=crop&w=900&q=80" },
-  { name: "Sereno",  desc: "Minimalismo en tonos arena", image: "https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?auto=format&fit=crop&w=900&q=80" },
-  { name: "Origen",  desc: "Edición fundadora limitada", image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=900&q=80" },
-  { name: "Paz",     desc: "Blanco y plata, tejido en seda", image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=900&q=80" },
+  { name: "Amanecer", desc: "Pepitas en tonos cálidos, hecha a mano", image: "https://images.unsplash.com/photo-1611652022419-a9419f74343d?auto=format&fit=crop&w=900&q=80" },
+  { name: "Raíz",    desc: "Pepitas de madera artesanales", image: "https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=900&q=80" },
+  { name: "Abrazo",  desc: "Pepitas en terracota, pulsera artesanal", image: "https://images.unsplash.com/photo-1620061145951-5e3b0e3f2b9e?auto=format&fit=crop&w=900&q=80" },
+  { name: "Sereno",  desc: "Pepitas en tonos arena, minimalista", image: "https://images.unsplash.com/photo-1535632787350-4e68ef0ac584?auto=format&fit=crop&w=900&q=80" },
+  { name: "Origen",  desc: "Edición fundadora, pepitas especiales", image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=900&q=80" },
+  { name: "Paz",     desc: "Pepitas blancas, hecha a mano", image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=900&q=80" },
 ];
 
 interface Props {
@@ -71,7 +71,7 @@ export function AgapeStory({ products = [] }: Props) {
 
             <TextReveal
               as="h2"
-              text="Un hilo que sostiene una vida."
+              text="Una pieza que sostiene una vida."
               highlight={["sostiene"]}
               className="mt-4 max-w-3xl font-display text-3xl font-light tracking-tightest text-charcoal sm:text-5xl"
             />
@@ -79,12 +79,12 @@ export function AgapeStory({ products = [] }: Props) {
               <p className="mt-5 max-w-2xl text-pretty text-lg leading-relaxed text-charcoal-muted">
                 Fundación Nara nace de la mano de{" "}
                 <span className="font-medium text-charcoal">Ágape</span>. Cada
-                pulsera se teje a mano y el{" "}
+                pieza es armada a mano con pepitas artesanales y el{" "}
                 <span className="font-medium text-blue-600">
-                  100% de sus ganancias
+                  100% de las ganancias
                 </span>{" "}
-                financia directamente comida, refugio y salud para un adulto
-                mayor olvidado. Sin intermediarios.
+                se destina a mercados y alimentos para personas vulnerables
+                en la calle. Sin intermediarios.
               </p>
             </Reveal>
           </div>

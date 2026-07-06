@@ -5,11 +5,11 @@ import CartSidebar from '@/components/agape/cart/CartSidebar';
 
 export const metadata = {
   title: {
-    default: 'Ágape — Pulseras Católicas de Cristal y Oro | Colombia',
+    default: 'Ágape — Pulseras y Collares Artesanales | Colombia',
     template: '%s · Ágape',
   },
   description:
-    'Compra pulseras católicas artesanales de cristal y baño de oro 18k en Colombia. Joyería religiosa inspirada en los Misterios del Santo Rosario.',
+    'Compra pulseras y collares católicos artesanales hechos a mano en Colombia. Pepitas de colores, Virgen Milagrosa y crucifijo. Cada compra dona mercados a personas vulnerables.',
 };
 
 export default function AgapeLayout({ children }: { children: React.ReactNode }) {

@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     template: "%s · Fundación Nara",
   },
   description:
-    "Restauramos la dignidad de los adultos mayores abandonados en Colombia. Vivienda, salud y nutrición para quienes el mundo olvidó.",
+    "Ayudamos a personas vulnerables en Colombia: adultos mayores, personas en la calle y familias en abandono. Donamos mercados y alimentos con el apoyo de Ágape.",
   keywords: [
     "Fundación Nara",
     "adulto mayor",
