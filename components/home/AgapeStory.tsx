@@ -102,7 +102,7 @@ export function AgapeStory({ products = [] }: Props) {
         </div>
 
         {/* ── Product grid ───────────────────────────────────── */}
-        <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-3">
+        <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
           {cards.map((b, i) => (
             <motion.div
               key={b.name + i}
@@ -115,7 +115,7 @@ export function AgapeStory({ products = [] }: Props) {
                 href={b.id ? `/agape/producto/${b.id}` : AGAPE_URL}
                 className="group block"
               >
-                <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-blue-50">
+                <div className="relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-blue-50">
                   {b.image && (
                     <Image
                       src={b.image}

@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/Button";
 import { TextReveal } from "@/components/motion/TextReveal";
 import { Aurora } from "@/components/motion/Aurora";
 import { Magnetic } from "@/components/motion/Magnetic";
-import { CountUp } from "@/components/motion/CountUp";
 
 export function Hero() {
   const ref = React.useRef<HTMLElement>(null);
@@ -25,22 +24,13 @@ export function Hero() {
     <section
       ref={ref}
       id="inicio"
-      className="relative flex min-h-[50svh] items-center overflow-hidden bg-cream bg-grain pt-16"
+      className="relative overflow-hidden bg-cream bg-grain pt-16"
     >
       <Aurora />
-      <div className="container-content grid w-full items-center gap-10 px-6 pb-16 sm:px-8 lg:grid-cols-12 lg:gap-6 lg:px-12">
+      <div className="container-content grid w-full items-center gap-8 px-6 pb-10 pt-10 sm:px-8 lg:grid-cols-12 lg:gap-8 lg:px-12">
         {/* Copy */}
-        <motion.div style={{ y: copyY }} className="lg:col-span-7">
-          <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="eyebrow"
-          >
-            Fundación Nara · Colombia
-          </motion.span>
-
-          <div className="mt-6 font-display text-[2.6rem] font-light leading-[1.02] tracking-tightest text-charcoal sm:text-6xl lg:text-7xl xl:text-[5.2rem]">
+        <motion.div style={{ y: copyY }} className="lg:col-span-6">
+          <div className="font-display text-[2.4rem] font-light leading-[1.02] tracking-tightest text-charcoal sm:text-5xl lg:text-6xl xl:text-[4.5rem]">
             <TextReveal text="Hay vidas que" as="span" delay={0.3} immediate className="block" />
             <TextReveal
               text="el mundo dejó de mirar."
@@ -52,23 +42,11 @@ export function Hero() {
             />
           </div>
 
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-7 max-w-xl text-pretty text-lg leading-relaxed text-charcoal-muted"
-          >
-            En Colombia, miles de personas viven en la calle o en el abandono:
-            adultos mayores, familias vulnerables, personas sin hogar.
-            Nosotros existimos para devolverles lo que nunca debieron perder:
-            dignidad, cuidado y la certeza de que importan.
-          </motion.p>
-
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.3, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="mt-10 flex flex-col gap-3 sm:flex-row"
+            transition={{ delay: 0.9, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="mt-8 flex flex-col gap-3 sm:flex-row"
           >
             <Magnetic className="sm:inline-block">
               <Button asChild size="lg" className="w-full sm:w-auto">
@@ -84,48 +62,28 @@ export function Hero() {
               </Button>
             </Magnetic>
           </motion.div>
-
-          <motion.dl
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5, duration: 0.9 }}
-            className="mt-14 border-t border-charcoal/10 pt-8"
-          >
-            <div>
-              <dt className="font-display text-3xl font-normal tracking-tight text-charcoal">
-                <CountUp value={100} suffix="%" />
-              </dt>
-              <dd className="mt-1 text-xs leading-snug text-charcoal-muted">
-                de lo recaudado va directo a su cuidado
-              </dd>
-            </div>
-          </motion.dl>
         </motion.div>
 
-        {/* Image with parallax + gentle float */}
+        {/* Image — horizontal, less tall */}
         <motion.div
-          initial={{ opacity: 0, scale: 1.05 }}
+          initial={{ opacity: 0, scale: 1.03 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.3, ease: [0.22, 1, 0.36, 1] }}
-          className="relative lg:col-span-5"
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="relative lg:col-span-6"
         >
-          <motion.div
-            animate={{ y: [0, -12, 0] }}
-            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-            className="relative aspect-[4/5] w-full overflow-hidden rounded-[2rem] bg-charcoal/5 shadow-[0_30px_80px_-20px_rgba(22,24,29,0.4)]"
-          >
-            <motion.div style={{ y: imageY }} className="absolute inset-[-10%]">
+          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl bg-charcoal/5 shadow-[0_20px_60px_-16px_rgba(22,24,29,0.35)]">
+            <motion.div style={{ y: imageY }} className="absolute inset-[-6%]">
               <Image
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqKJdeMz5J0qnF0W3PicfhzLLxhHkyw8UFydsVD2s2Ke4YXTXs197eKV4&s=10"
                 alt="Personas atendidas por Fundación Nara"
                 fill
                 priority
-                sizes="(max-width: 1024px) 100vw, 42vw"
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
             </motion.div>
-            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 via-transparent to-transparent" />
-          </motion.div>
+            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/30 via-transparent to-transparent" />
+          </div>
         </motion.div>
       </div>
 
