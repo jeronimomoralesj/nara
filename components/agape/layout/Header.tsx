@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, ShoppingBag, X } from 'lucide-react';
+import { ArrowLeft, Menu, ShoppingBag, X } from 'lucide-react';
 import { useCart } from '@/components/agape/cart/CartContext';
 
 const BASE_LINKS = [
@@ -58,8 +58,16 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 md:h-20 lg:px-8">
-        {/* Wordmark */}
-        <Link href="/agape" className="group flex flex-col leading-none">
+        {/* Wordmark + back link */}
+        <div className="flex flex-col gap-0.5">
+          <Link
+            href="/"
+            className="hidden items-center gap-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-royal/45 transition-colors hover:text-royal sm:flex"
+          >
+            <ArrowLeft size={10} />
+            Fundación Nara
+          </Link>
+          <Link href="/agape" className="group flex flex-col leading-none">
           <span className="font-logo text-2xl tracking-wide text-royal transition-colors duration-300 group-hover:text-royal-deep md:text-3xl">
             ÁGAPE
           </span>
@@ -67,6 +75,7 @@ export default function Header() {
             Amar como Dios nos ama
           </span>
         </Link>
+        </div>
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-5 md:flex lg:gap-8">
@@ -148,6 +157,21 @@ export default function Header() {
             className="overflow-hidden border-t border-oro/20 bg-cielo-50/95 backdrop-blur-xl md:hidden"
           >
             <ul className="space-y-1 px-6 py-4">
+              <motion.li
+                initial={{ opacity: 0, x: -16 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0, duration: 0.35 }}
+              >
+                <Link
+                  href="/"
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center gap-2 rounded-lg px-3 py-2.5 text-sm font-semibold uppercase tracking-[0.15em] text-royal/50 transition-colors hover:text-royal"
+                >
+                  <ArrowLeft size={14} />
+                  Volver a Fundación Nara
+                </Link>
+              </motion.li>
+              <li className="my-1 h-px bg-oro/15" />
               {navLinks.map((link, index) => (
                 <motion.li
                   key={link.href}

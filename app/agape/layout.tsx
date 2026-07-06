@@ -1,6 +1,6 @@
 import { CartProvider } from '@/components/agape/cart/CartContext';
 import Header from '@/components/agape/layout/Header';
-import Footer from '@/components/agape/layout/Footer';
+import { Footer } from '@/components/Footer';
 import CartSidebar from '@/components/agape/cart/CartSidebar';
 
 export const metadata = {

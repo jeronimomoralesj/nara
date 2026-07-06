@@ -49,7 +49,7 @@ function VideoGridCard({
       viewport={{ once: true, margin: "-20px" }}
       transition={{ duration: 0.6, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
       onClick={onClick}
-      className="group relative aspect-[9/16] w-full overflow-hidden rounded-2xl bg-charcoal focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+      className="group relative h-full w-full overflow-hidden rounded-2xl bg-charcoal focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
       aria-label={`Ver testimonio ${index + 1}`}
     >
       <video
@@ -171,8 +171,11 @@ export function TestimoniosSection() {
           </p>
         </Reveal>
 
-        {/* 2×2 grid — same on all screen sizes */}
-        <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:gap-5">
+        {/* 2×2 grid — height-capped so all 4 are visible on every screen */}
+        <div
+          className="mt-10 grid grid-cols-2 gap-3 sm:gap-4"
+          style={{ height: "clamp(280px, 55vh, 480px)" }}
+        >
           {testimonios.map((t, i) => (
             <VideoGridCard
               key={i}

@@ -3,7 +3,6 @@ import { Instagram, Facebook, Mail, ArrowUpRight } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import { CopyButton } from "@/components/CopyButton";
 
-const AGAPE_URL = "https://agape-rust.vercel.app";
 const NEQUI = "3106605566";
 
 const navGroups = [
@@ -19,7 +18,7 @@ const navGroups = [
   {
     title: "Ecosistema",
     links: [
-      { label: "Agape", href: AGAPE_URL, external: true },
+      { label: "Tienda Ágape", href: "/agape" },
       { label: "Alianzas PYMEs", href: "/#pymes" },
     ],
   },

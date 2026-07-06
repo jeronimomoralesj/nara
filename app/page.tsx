@@ -3,7 +3,9 @@ import { AgapeStory } from "@/components/home/AgapeStory";
 import { TestimoniosSection } from "@/components/home/TestimoniosSection";
 import { PymeSection } from "@/components/home/PymeSection";
 import { VolunteerSection } from "@/components/home/VolunteerSection";
+import { FloatingAgapeButton } from "@/components/home/FloatingAgapeButton";
 import { Marquee } from "@/components/motion/Marquee";
+import { fetchProducts } from "@/lib/agape/products";
 
 const values = [
   "Dignidad",
@@ -17,7 +19,9 @@ const values = [
   "Solidaridad",
 ];
 
-export default function Home() {
+export default async function Home() {
+  const agapeProducts = await fetchProducts(6);
+
   return (
     <main>
       <Hero />
@@ -26,10 +30,11 @@ export default function Home() {
         <Marquee items={values} />
       </div>
 
-      <AgapeStory />
+      <AgapeStory products={agapeProducts} />
       <TestimoniosSection />
       <VolunteerSection />
       <PymeSection />
+      <FloatingAgapeButton />
     </main>
   );
 }

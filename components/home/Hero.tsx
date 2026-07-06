@@ -25,7 +25,7 @@ export function Hero() {
     <section
       ref={ref}
       id="inicio"
-      className="relative flex min-h-[100svh] items-center overflow-hidden bg-cream bg-grain pt-16"
+      className="relative flex min-h-[85svh] items-center overflow-hidden bg-cream bg-grain pt-16"
     >
       <Aurora />
       <div className="container-content grid w-full items-center gap-10 px-6 pb-16 sm:px-8 lg:grid-cols-12 lg:gap-6 lg:px-12">
@@ -89,22 +89,16 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5, duration: 0.9 }}
-            className="mt-14 grid max-w-lg grid-cols-3 gap-6 border-t border-charcoal/10 pt-8"
+            className="mt-14 border-t border-charcoal/10 pt-8"
           >
-            {[
-              { node: <CountUp value={100} suffix="%" />, label: "de lo recaudado a su cuidado" },
-              { node: <CountUp value={30} prefix="+" />, label: "personas acompañadas" },
-              { node: <>24/7</>, label: "atención y presencia" },
-            ].map((stat, i) => (
-              <div key={i}>
-                <dt className="font-display text-3xl font-normal tracking-tight text-charcoal">
-                  {stat.node}
-                </dt>
-                <dd className="mt-1 text-xs leading-snug text-charcoal-muted">
-                  {stat.label}
-                </dd>
-              </div>
-            ))}
+            <div>
+              <dt className="font-display text-3xl font-normal tracking-tight text-charcoal">
+                <CountUp value={100} suffix="%" />
+              </dt>
+              <dd className="mt-1 text-xs leading-snug text-charcoal-muted">
+                de lo recaudado va directo a su cuidado
+              </dd>
+            </div>
           </motion.dl>
         </motion.div>
 
@@ -122,8 +116,8 @@ export function Hero() {
           >
             <motion.div style={{ y: imageY }} className="absolute inset-[-10%]">
               <Image
-                src="https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?auto=format&fit=crop&w=1200&q=80"
-                alt="Manos de un adulto mayor sostenidas con cariño"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqKJdeMz5J0qnF0W3PicfhzLLxhHkyw8UFydsVD2s2Ke4YXTXs197eKV4&s=10"
+                alt="Personas atendidas por Fundación Nara"
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 42vw"
