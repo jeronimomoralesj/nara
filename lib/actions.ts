@@ -3,7 +3,8 @@
 import { connectDB, isDbConfigured } from "@/lib/db";
 import { Donor } from "@/lib/models/Donor";
 import { CompanyLead } from "@/lib/models/CompanyLead";
-import { donorSchema, companyLeadSchema } from "@/lib/validators";
+import { Volunteer } from "@/lib/models/Volunteer";
+import { donorSchema, companyLeadSchema, volunteerSchema } from "@/lib/validators";
 import type { ZodError } from "zod";
 
 export type FormState = {
@@ -107,6 +108,50 @@ export async function registerCompany(
     };
   } catch (error) {
     console.error("registerCompany error:", error);
+    return {
+      ok: false,
+      message: "Algo salió mal al guardar. Intenta de nuevo en un momento.",
+    };
+  }
+}
+
+/** Register a volunteer who wants to offer their time and skills. */
+export async function registerVolunteer(
+  _prev: FormState | null,
+  formData: FormData
+): Promise<FormState> {
+  const parsed = volunteerSchema.safeParse({
+    name: formData.get("name"),
+    email: formData.get("email"),
+    phone: formData.get("phone"),
+    skills: formData.get("skills"),
+    availability: formData.get("availability"),
+  });
+
+  if (!parsed.success) {
+    return {
+      ok: false,
+      message: "Revisa los campos marcados.",
+      fieldErrors: fieldErrorsFrom(parsed.error),
+    };
+  }
+
+  try {
+    const conn = await connectDB();
+    if (!conn) {
+      return {
+        ok: true,
+        demo: true,
+        message: "¡Gracias! Recibimos tu mensaje (modo demostración). Te contactaremos pronto.",
+      };
+    }
+    await Volunteer.create(parsed.data);
+    return {
+      ok: true,
+      message: "¡Gracias! Tu oferta de ayuda quedó registrada. Nuestro equipo te contactará pronto.",
+    };
+  } catch (error) {
+    console.error("registerVolunteer error:", error);
     return {
       ok: false,
       message: "Algo salió mal al guardar. Intenta de nuevo en un momento.",

@@ -32,3 +32,14 @@ export const companyLeadSchema = z.object({
 });
 
 export type CompanyLeadInput = z.infer<typeof companyLeadSchema>;
+
+/** Volunteer / "Quiero Ayudar" submission. */
+export const volunteerSchema = z.object({
+  name: z.string().trim().min(2, "Cuéntanos tu nombre").max(120),
+  email: z.string().trim().toLowerCase().email("Correo no válido"),
+  phone: z.string().trim().min(7, "Número no válido").max(40),
+  skills: z.string().trim().min(3, "Cuéntanos en qué puedes ayudar").max(600),
+  availability: z.string().trim().min(2, "Indícanos tu disponibilidad").max(120),
+});
+
+export type VolunteerInput = z.infer<typeof volunteerSchema>;

@@ -3,6 +3,8 @@ import { AgapeStory } from "@/components/home/AgapeStory";
 import { CommunityFeed } from "@/components/home/CommunityFeed";
 import { DonateSection } from "@/components/home/DonateSection";
 import { PymeSection } from "@/components/home/PymeSection";
+import { TestimoniosSection } from "@/components/home/TestimoniosSection";
+import { VolunteerSection } from "@/components/home/VolunteerSection";
 import { Marquee } from "@/components/motion/Marquee";
 
 const values = [
@@ -11,8 +13,10 @@ const values = [
   "Salud",
   "Nutrición",
   "Compañía",
-  "Transparencia",
   "Esperanza",
+  "Amor",
+  "Comunidad",
+  "Solidaridad",
 ];
 
 export default function Home() {
@@ -25,8 +29,10 @@ export default function Home() {
       </div>
 
       <AgapeStory />
+      <TestimoniosSection />
       <CommunityFeed />
       <DonateSection />
+      <VolunteerSection />
       <PymeSection />
     </main>
   );

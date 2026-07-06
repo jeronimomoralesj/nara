@@ -58,9 +58,10 @@ export function Hero() {
             transition={{ delay: 1.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="mt-7 max-w-xl text-pretty text-lg leading-relaxed text-charcoal-muted"
           >
-            En Colombia, miles de adultos mayores envejecen en el abandono.
-            Nosotros existimos para devolverles lo que nunca debieron perder: un
-            hogar, cuidado y la certeza de que importan.
+            En Colombia, miles de personas viven en la calle o en el abandono:
+            adultos mayores, familias vulnerables, personas sin hogar.
+            Nosotros existimos para devolverles lo que nunca debieron perder:
+            dignidad, cuidado y la certeza de que importan.
           </motion.p>
 
           <motion.div
@@ -92,8 +93,8 @@ export function Hero() {
           >
             {[
               { node: <CountUp value={100} suffix="%" />, label: "de lo recaudado a su cuidado" },
-              { node: <CountUp value={30} prefix="+" />, label: "adultos mayores acompañados" },
-              { node: <>24/7</>, label: "atención y compañía" },
+              { node: <CountUp value={30} prefix="+" />, label: "personas acompañadas" },
+              { node: <>24/7</>, label: "atención y presencia" },
             ].map((stat, i) => (
               <div key={i}>
                 <dt className="font-display text-3xl font-normal tracking-tight text-charcoal">
@@ -137,10 +138,10 @@ export function Hero() {
               className="absolute bottom-5 left-5 right-5 rounded-2xl bg-white/85 p-4 backdrop-blur-md"
             >
               <p className="text-sm font-medium text-charcoal">
-                “Pensé que nadie volvería a preguntar por mí.”
+                "Pensé que nadie volvería a preguntar por mí."
               </p>
               <p className="mt-1 text-xs text-charcoal-muted">
-                — Rosa, 82 años · Hoy en casa
+                — Rosa, 82 años · Hoy en un hogar seguro
               </p>
             </motion.div>
           </motion.div>
