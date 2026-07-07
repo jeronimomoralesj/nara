@@ -8,13 +8,7 @@ import { ArrowUpDown, Search, SearchX, Wand2, X } from 'lucide-react';
 import type { Product } from '@/lib/agape/types';
 import { formatPrice } from '@/lib/agape/types';
 import { CUSTOM_PRICE, NOMBRES_BASE_PRICE } from '@/lib/agape/customBracelet';
-import { NombresCollarPreview } from '@/components/agape/personalizar/nombresArt';
 import ProductCard from './ProductCard';
-
-/** Default look for the "Collar de Nombres" tile. */
-const NOMBRES_MARIA = { hex: '#EBD4BE', light: true }; // Champaña Suave
-const NOMBRES_JESUS = { hex: '#6BB343', light: false }; // Verde Oliva Claro
-const NOMBRES_METAL = '#C2C7CF'; // Plata
 
 /** Always-present "build your own" tile with its own flow (/personalizar). */
 function CustomBuilderCard() {
@@ -77,18 +71,16 @@ function NombresBuilderCard() {
         href="/agape/collar-nombres"
         className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-oro/40 bg-gradient-to-b from-white/90 via-cielo-100/70 to-oro/10 shadow-card transition-shadow duration-500 hover:shadow-luxe"
       >
-        {/* Real necklace render so the tile shows the actual product */}
-        <div className="relative flex aspect-[4/5] items-center justify-center overflow-hidden px-5 py-4">
-          <div className="pointer-events-none absolute -top-16 left-1/2 h-44 w-44 -translate-x-1/2 rounded-full bg-oro/15 blur-3xl" />
-          <div className="w-full max-w-[13rem] transition-transform duration-700 group-hover:scale-[1.04] sm:max-w-[14rem]">
-            <NombresCollarPreview
-              maria={NOMBRES_MARIA}
-              jesus={NOMBRES_JESUS}
-              metalHex={NOMBRES_METAL}
-              names={['SOFIA', 'MATEO']}
-              animate={false}
-            />
-          </div>
+        {/* Real product photo */}
+        <div className="relative aspect-[4/5] overflow-hidden">
+          <Image
+            src="/agape/brand/collar-nombres-variedad.png"
+            alt="Collar de nombres Ágape artesanal con cuentas de letras"
+            fill
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-royal/30 via-transparent to-transparent" />
           <span className="absolute left-3 top-3 flex items-center gap-1.5 rounded-full bg-oro px-2.5 py-1 text-[0.6rem] font-bold uppercase tracking-[0.15em] text-royal-ink shadow-aura-soft sm:left-4 sm:top-4">
             <Wand2 className="h-3 w-3" />
             Personalizable
