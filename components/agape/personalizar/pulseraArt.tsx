@@ -524,43 +524,53 @@ function DijeFatima({ x, y }: { x: number; y: number }) {
   );
 }
 
-/** María Auxiliadora — arch/horseshoe centerpiece with standing figure. */
+/** María Auxiliadora — full circular medal with standing figure holding the Child. */
 function DijeAuxiliadora({ x, y }: { x: number; y: number }) {
   const r = DIJE_R;
-  const archR = r - 1;
   return (
     <g>
-      {/* Horseshoe arch (open at bottom) */}
-      <path
-        d={`M${x - archR},${y + 7} A${archR},${archR} 0 1,1 ${x + archR},${y + 7}`}
-        fill="url(#goldGradient)"
-        stroke={GOLD_DEEP}
-        strokeWidth={1.4}
-      />
-      {/* Inner arch detail */}
-      <path
-        d={`M${x - archR + 4},${y + 7} A${archR - 4},${archR - 4} 0 1,1 ${x + archR - 4},${y + 7}`}
-        fill="none"
-        stroke={GOLD_DEEP}
-        strokeWidth={0.7}
-        opacity={0.55}
-      />
-      {/* Connection tabs at the ends */}
-      <rect x={x - archR - 2} y={y + 4} width={4} height={6} rx={1} fill={GOLD_DEEP} opacity={0.7} />
-      <rect x={x + archR - 2} y={y + 4} width={4} height={6} rx={1} fill={GOLD_DEEP} opacity={0.7} />
+      {/* Beaded rim (signature detail) */}
+      {Array.from({ length: 24 }).map((_, i) => {
+        const a = (i / 24) * Math.PI * 2;
+        return (
+          <circle
+            key={i}
+            cx={x + (r - 1.5) * Math.cos(a)}
+            cy={y + (r - 1.5) * Math.sin(a)}
+            r={0.7}
+            fill={GOLD_DEEP}
+            opacity={0.55}
+          />
+        );
+      })}
+      <MedalDisc x={x} y={y} />
       {/* Veiled head */}
-      <circle cx={x} cy={y - 6} r={2.9} fill="url(#goldGradient)" stroke={GOLD_DEEP} strokeWidth={0.6} />
+      <circle cx={x} cy={y - 8.5} r={2.8} fill="url(#goldGradient)" stroke={GOLD_DEEP} strokeWidth={0.6} />
       {/* Veil arc */}
-      <path d={`M${x - 3},${y - 6} a3,3.4 0 0 1 6,0`} fill="none" stroke={GOLD_DEEP} strokeWidth={0.8} />
+      <path d={`M${x - 2.9},${y - 8.5} a2.9,3.2 0 0 1 5.8,0`} fill="none" stroke={GOLD_DEEP} strokeWidth={0.8} />
       {/* Robe */}
       <path
-        d={`M${x},${y - 3} C ${x - 4},${y + 1} ${x - 4.5},${y + 6} ${x - 3.5},${y + 8}
-            L ${x + 3.5},${y + 8} C ${x + 4.5},${y + 6} ${x + 4},${y + 1} ${x},${y - 3} Z`}
+        d={`M${x},${y - 5.5}
+            C ${x - 5},${y - 1} ${x - 5.5},${y + 6} ${x - 4},${y + 11.5}
+            L ${x + 4},${y + 11.5}
+            C ${x + 5.5},${y + 6} ${x + 5},${y - 1} ${x},${y - 5.5} Z`}
         fill={GOLD_DEEP}
         opacity={0.82}
       />
-      {/* Child in arms (right side — María Auxiliadora signature) */}
-      <circle cx={x + 3} cy={y + 1} r={1.8} fill="url(#goldGradient)" stroke={GOLD_DEEP} strokeWidth={0.5} />
+      {/* Right arm holding the Child */}
+      <path
+        d={`M${x + 1},${y - 2} C ${x + 4},${y - 1} ${x + 6.5},${y + 1} ${x + 7},${y + 3}`}
+        fill="none"
+        stroke={GOLD_DEEP}
+        strokeWidth={1.8}
+        strokeLinecap="round"
+        opacity={0.85}
+      />
+      {/* Child Jesus (small circle in arms) */}
+      <circle cx={x + 7} cy={y + 5} r={2.2} fill="url(#goldGradient)" stroke={GOLD_DEEP} strokeWidth={0.6} />
+      {/* Tiny cross above child's head */}
+      <rect x={x + 6.3} y={y + 1.5} width={1.4} height={3.5} rx={0.5} fill={GOLD_DEEP} opacity={0.8} />
+      <rect x={x + 5.1} y={y + 2.5} width={3.8} height={1.4} rx={0.5} fill={GOLD_DEEP} opacity={0.8} />
     </g>
   );
 }
