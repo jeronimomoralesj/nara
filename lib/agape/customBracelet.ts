@@ -107,7 +107,7 @@ export function findPattern(id: string | undefined): PatternOption {
 
 /** Fixed price per product line — COP, validated server-side. */
 export const CUSTOM_PRICES: Record<ProductType, number> = {
-  pulsera: 22000,
+  pulsera: 20000,
   collar: 35000,
   nombres: NOMBRES_BASE_PRICE,
   colombia: COLOMBIA_PRICE,
@@ -147,9 +147,11 @@ export const BEADS: BeadOption[] = [
 
 /** Adjustable cords — only the pulsera lets the customer choose. */
 export const CORDS: CordOption[] = [
-  { id: 'crema', name: 'Crema', hex: '#E3D5BC' },
-  { id: 'rosa-viejo', name: 'Rosa Viejo', hex: '#B37D8E' },
-  { id: 'verde-oliva', name: 'Verde Oliva', hex: '#536643' },
+  { id: 'verde-oliva', name: 'Verde Oliva', hex: '#848b25' },
+  { id: 'azul-marino', name: 'Azul Marino', hex: '#1E2D4A' },
+  { id: 'negro', name: 'Negro', hex: '#1A1A1A' },
+  { id: 'rosa-viejo', name: 'Rosa Viejo', hex: '#C5A89E' },
+  { id: 'blanco', name: 'Blanco', hex: '#F2F4F7' },
 ];
 
 /** The collar uses a single, fixed waxed thread (not customer-selectable). */
@@ -164,6 +166,8 @@ export const DIJES: DijeOption[] = [
   { id: 'guadalupe', name: 'Virgen de Guadalupe' },
   { id: 'milagrosa', name: 'Virgen Milagrosa' },
   { id: 'san-benito', name: 'San Benito de Nursia' },
+  { id: 'fatima', name: 'Nuestra Señora de Fátima' },
+  { id: 'auxiliadora', name: 'María Auxiliadora' },
 ];
 
 /** Default centerpiece when a collar config omits one (legacy carts). */

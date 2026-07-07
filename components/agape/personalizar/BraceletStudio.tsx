@@ -169,7 +169,7 @@ export default function BraceletStudio() {
   const [palette, setPalette] = useState<PaletteBead[]>(SEED_PALETTE);
   const [mariaId, setMariaId] = useState('champana');
   const [jesusId, setJesusId] = useState('esmeralda-jesus');
-  const [cordId, setCordId] = useState('crema');
+  const [cordId, setCordId] = useState('verde-oliva');
   const [dijeId, setDijeId] = useState(DIJES[0].id);
   const [openStep, setOpenStep] = useState(1);
   const [added, setAdded] = useState(false);

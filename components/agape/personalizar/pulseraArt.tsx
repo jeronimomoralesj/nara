@@ -469,12 +469,110 @@ function DijeSanBenito({ x, y }: { x: number; y: number }) {
   );
 }
 
-export type DijeId = 'guadalupe' | 'milagrosa' | 'san-benito';
+/** Nuestra Señora de Fátima — oval medal with crown of rays and cloud base. */
+function DijeFatima({ x, y }: { x: number; y: number }) {
+  const r = DIJE_R;
+  return (
+    <g>
+      {/* Crown of rays at the top half only */}
+      {Array.from({ length: 16 }).map((_, i) => {
+        const a = ((i / 16) * Math.PI) - Math.PI / 2 - Math.PI / 2;
+        const long = i % 2 === 0;
+        return (
+          <line
+            key={i}
+            x1={x + r * Math.cos(a - Math.PI / 2)}
+            y1={y + r * Math.sin(a - Math.PI / 2)}
+            x2={x + (r + (long ? 6 : 3)) * Math.cos(a - Math.PI / 2)}
+            y2={y + (r + (long ? 6 : 3)) * Math.sin(a - Math.PI / 2)}
+            stroke={GOLD}
+            strokeWidth={long ? 1.4 : 0.8}
+            strokeLinecap="round"
+            opacity={0.85}
+          />
+        );
+      })}
+      <MedalDisc x={x} y={y} />
+      {/* Cloud base */}
+      <path
+        d={`M${x - 9},${y + 10} q3,-5 6,-1 q3,-5 6,-1`}
+        fill="none"
+        stroke={GOLD_DEEP}
+        strokeWidth={1.3}
+        opacity={0.65}
+      />
+      {/* Veiled head */}
+      <circle cx={x} cy={y - 8} r={2.9} fill="url(#goldGradient)" stroke={GOLD_DEEP} strokeWidth={0.6} />
+      {/* Small crown */}
+      <path
+        d={`M${x - 2.5},${y - 11} l0.8,-2.2 l1.7,1.6 l1.7,-1.6 l0.8,2.2 Z`}
+        fill={GOLD}
+        stroke={GOLD_DEEP}
+        strokeWidth={0.5}
+        opacity={0.9}
+      />
+      {/* Robe with mantle */}
+      <path
+        d={`M${x},${y - 5} C ${x - 5},${y - 1} ${x - 5.5},${y + 7} ${x - 4},${y + 11}
+            L ${x + 4},${y + 11} C ${x + 5.5},${y + 7} ${x + 5},${y - 1} ${x},${y - 5} Z`}
+        fill={GOLD_DEEP}
+        opacity={0.8}
+      />
+      {/* Joined hands */}
+      <path d={`M${x},${y - 2} l-1.5,4 l1.5,1.2 l1.5,-1.2 Z`} fill={GOLD_DEEP} opacity={0.85} />
+    </g>
+  );
+}
+
+/** María Auxiliadora — arch/horseshoe centerpiece with standing figure. */
+function DijeAuxiliadora({ x, y }: { x: number; y: number }) {
+  const r = DIJE_R;
+  const archR = r - 1;
+  return (
+    <g>
+      {/* Horseshoe arch (open at bottom) */}
+      <path
+        d={`M${x - archR},${y + 7} A${archR},${archR} 0 1,1 ${x + archR},${y + 7}`}
+        fill="url(#goldGradient)"
+        stroke={GOLD_DEEP}
+        strokeWidth={1.4}
+      />
+      {/* Inner arch detail */}
+      <path
+        d={`M${x - archR + 4},${y + 7} A${archR - 4},${archR - 4} 0 1,1 ${x + archR - 4},${y + 7}`}
+        fill="none"
+        stroke={GOLD_DEEP}
+        strokeWidth={0.7}
+        opacity={0.55}
+      />
+      {/* Connection tabs at the ends */}
+      <rect x={x - archR - 2} y={y + 4} width={4} height={6} rx={1} fill={GOLD_DEEP} opacity={0.7} />
+      <rect x={x + archR - 2} y={y + 4} width={4} height={6} rx={1} fill={GOLD_DEEP} opacity={0.7} />
+      {/* Veiled head */}
+      <circle cx={x} cy={y - 6} r={2.9} fill="url(#goldGradient)" stroke={GOLD_DEEP} strokeWidth={0.6} />
+      {/* Veil arc */}
+      <path d={`M${x - 3},${y - 6} a3,3.4 0 0 1 6,0`} fill="none" stroke={GOLD_DEEP} strokeWidth={0.8} />
+      {/* Robe */}
+      <path
+        d={`M${x},${y - 3} C ${x - 4},${y + 1} ${x - 4.5},${y + 6} ${x - 3.5},${y + 8}
+            L ${x + 3.5},${y + 8} C ${x + 4.5},${y + 6} ${x + 4},${y + 1} ${x},${y - 3} Z`}
+        fill={GOLD_DEEP}
+        opacity={0.82}
+      />
+      {/* Child in arms (right side — María Auxiliadora signature) */}
+      <circle cx={x + 3} cy={y + 1} r={1.8} fill="url(#goldGradient)" stroke={GOLD_DEEP} strokeWidth={0.5} />
+    </g>
+  );
+}
+
+export type DijeId = 'guadalupe' | 'milagrosa' | 'san-benito' | 'fatima' | 'auxiliadora';
 
 /** Render the chosen collar centerpiece medal. */
 function DijeMedal({ id, x, y }: { id: string; x: number; y: number }) {
   if (id === 'milagrosa') return <DijeMilagrosa x={x} y={y} />;
   if (id === 'san-benito') return <DijeSanBenito x={x} y={y} />;
+  if (id === 'fatima') return <DijeFatima x={x} y={y} />;
+  if (id === 'auxiliadora') return <DijeAuxiliadora x={x} y={y} />;
   return <DijeGuadalupe x={x} y={y} />;
 }
 
