@@ -27,14 +27,14 @@ interface Props {
 
 export function AgapeStory({ products = [] }: Props) {
   const cards = products.length > 0
-    ? products.slice(0, 6).map((p) => ({
+    ? products.slice(0, 4).map((p) => ({
         name: p.title,
         desc: p.description?.slice(0, 60) ?? "",
         image: p.images?.[0] ?? "",
         price: p.price,
         id: String(p._id),
       }))
-    : FALLBACK_BRACELETS.map((b) => ({ ...b, price: undefined, id: undefined }));
+    : FALLBACK_BRACELETS.slice(0, 4).map((b) => ({ ...b, price: undefined, id: undefined }));
 
   return (
     <section id="historia" className="section-padding bg-white">
@@ -102,7 +102,7 @@ export function AgapeStory({ products = [] }: Props) {
         </div>
 
         {/* ── Product grid ───────────────────────────────────── */}
-        <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-4">
+        <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 sm:grid-cols-4">
           {cards.map((b, i) => (
             <motion.div
               key={b.name + i}

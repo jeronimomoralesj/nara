@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Fraunces, Titan_One } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { NaraShell } from "@/components/NaraShell";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
@@ -59,6 +60,18 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${inter.variable} ${fraunces.variable} ${titanOne.variable}`}>
       <body className="min-h-screen bg-cream">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-FT37WL7Y02"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-FT37WL7Y02');
+          `}
+        </Script>
         <ScrollProgress />
         <NaraShell>
           {children}

@@ -42,7 +42,6 @@ export function Navbar() {
     setOpen(false);
   }, [pathname]);
 
-  // Lock body scroll while the overlay is open
   React.useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -51,105 +50,112 @@ export function Navbar() {
   }, [open]);
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        scrolled || open
-          ? "border-b border-charcoal/10 bg-cream/80 backdrop-blur-xl"
-          : "border-b border-transparent bg-transparent"
-      )}
-    >
-      <nav className="container-content flex h-16 items-center justify-between px-6 sm:px-8 lg:px-12">
-        <Link href="/" aria-label="Fundación Nara — Inicio" className="relative z-50">
-          <Logo />
-        </Link>
+    <>
+      {/* The header bar itself — never full-screen, just the top strip */}
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-50 transition-all duration-500",
+          scrolled || open
+            ? "border-b border-charcoal/10 bg-cream/95 backdrop-blur-xl"
+            : "border-b border-transparent bg-transparent"
+        )}
+      >
+        <nav className="container-content flex h-16 items-center justify-between px-6 sm:px-8 lg:px-12">
+          <Link href="/" aria-label="Fundación Nara — Inicio">
+            <Logo />
+          </Link>
 
-        {/* Desktop */}
-        <div className="hidden items-center gap-8 md:flex">
-          {links.map((link) => {
-            const active =
-              link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  "relative text-sm font-medium transition-colors",
-                  active ? "text-charcoal" : "text-charcoal-muted hover:text-charcoal"
-                )}
-              >
-                {link.label}
-                {active && (
-                  <motion.span
-                    layoutId="nav-underline"
-                    className="absolute -bottom-1.5 left-0 right-0 h-0.5 rounded-full bg-blue-500"
-                  />
-                )}
-              </Link>
-            );
-          })}
-          <Button asChild>
-            <Link href="/#ayudar">Apoyar Ahora</Link>
-          </Button>
-        </div>
+          {/* Desktop links */}
+          <div className="hidden items-center gap-8 md:flex">
+            {links.map((link) => {
+              const active =
+                link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={cn(
+                    "relative text-sm font-medium transition-colors",
+                    active ? "text-charcoal" : "text-charcoal-muted hover:text-charcoal"
+                  )}
+                >
+                  {link.label}
+                  {active && (
+                    <motion.span
+                      layoutId="nav-underline"
+                      className="absolute -bottom-1.5 left-0 right-0 h-0.5 rounded-full bg-blue-500"
+                    />
+                  )}
+                </Link>
+              );
+            })}
+            <Button asChild>
+              <Link href="/#ayudar">Apoyar Ahora</Link>
+            </Button>
+          </div>
 
-        {/* Mobile trigger — animated hamburger */}
-        <button
-          className="relative z-50 inline-flex h-11 w-11 items-center justify-center rounded-full text-charcoal transition-colors hover:bg-charcoal/5 md:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-label={open ? "Cerrar menú" : "Abrir menú"}
-          aria-expanded={open}
-        >
-          <span className="relative block h-4 w-6">
-            <motion.span
-              className="absolute left-0 block h-[2px] w-6 rounded-full bg-charcoal"
-              animate={open ? { top: 7, rotate: 45 } : { top: 1, rotate: 0 }}
-              style={{ top: 1 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            />
-            <motion.span
-              className="absolute left-0 top-[7px] block h-[2px] w-6 rounded-full bg-charcoal"
-              animate={open ? { opacity: 0, x: -8 } : { opacity: 1, x: 0 }}
-              transition={{ duration: 0.2 }}
-            />
-            <motion.span
-              className="absolute left-0 block h-[2px] w-6 rounded-full bg-charcoal"
-              animate={open ? { top: 7, rotate: -45 } : { top: 13, rotate: 0 }}
-              style={{ top: 13 }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            />
-          </span>
-        </button>
-      </nav>
+          {/* Hamburger — always on top */}
+          <button
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-charcoal transition-colors hover:bg-charcoal/5 md:hidden"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={open}
+          >
+            <span className="relative block h-4 w-6">
+              <motion.span
+                className="absolute left-0 block h-[2px] w-6 rounded-full bg-charcoal"
+                animate={open ? { top: 7, rotate: 45 } : { top: 1, rotate: 0 }}
+                style={{ top: 1 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              />
+              <motion.span
+                className="absolute left-0 top-[7px] block h-[2px] w-6 rounded-full bg-charcoal"
+                animate={open ? { opacity: 0, x: -8 } : { opacity: 1, x: 0 }}
+                transition={{ duration: 0.2 }}
+              />
+              <motion.span
+                className="absolute left-0 block h-[2px] w-6 rounded-full bg-charcoal"
+                animate={open ? { top: 7, rotate: -45 } : { top: 13, rotate: 0 }}
+                style={{ top: 13 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              />
+            </span>
+          </button>
+        </nav>
+      </header>
 
+      {/* Mobile overlay — sibling of header, own stacking context at z-40 */}
       <MobileOverlay open={open} pathname={pathname} onClose={() => setOpen(false)} />
-    </header>
+    </>
   );
 }
 
 /* ---------- Mobile full-screen overlay ---------- */
 
 const panel: Variants = {
-  hidden: { clipPath: "circle(0% at calc(100% - 36px) 32px)" },
+  hidden: { opacity: 0, y: -12 },
   visible: {
-    clipPath: "circle(150% at calc(100% - 36px) 32px)",
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
   },
   exit: {
-    clipPath: "circle(0% at calc(100% - 36px) 32px)",
-    transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+    opacity: 0,
+    y: -12,
+    transition: { duration: 0.22, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
 const list: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.07, delayChildren: 0.15 } },
+  visible: { transition: { staggerChildren: 0.06, delayChildren: 0.08 } },
   exit: {},
 };
 
 const item: Variants = {
-  hidden: { y: "120%" },
-  visible: { y: "0%", transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } },
+  exit: { opacity: 0, y: 16 },
 };
 
 function MobileOverlay({
@@ -169,18 +175,17 @@ function MobileOverlay({
           initial="hidden"
           animate="visible"
           exit="exit"
+          // z-40 keeps it below the header bar (z-50) so logo + hamburger stay on top
           className="fixed inset-0 z-40 flex flex-col bg-cream md:hidden"
         >
-          {/* Drifting glow for depth */}
-          <motion.div
+          {/* Decorative glow */}
+          <div
             aria-hidden
-            animate={{ x: [0, 30, -10, 0], y: [0, 20, -15, 0], scale: [1, 1.15, 0.95, 1] }}
-            transition={{ duration: 16, repeat: Infinity, ease: "easeInOut" }}
             className="pointer-events-none absolute -left-16 bottom-24 h-64 w-64 rounded-full bg-blue-300/30 blur-[90px]"
           />
 
           <div className="flex flex-1 flex-col px-6 pb-10 pt-24">
-            {/* Links */}
+            {/* Nav links */}
             <motion.nav
               variants={list}
               initial="hidden"
@@ -196,7 +201,7 @@ function MobileOverlay({
                 return (
                   <div
                     key={link.href}
-                    className="overflow-hidden border-b border-charcoal/10"
+                    className="border-b border-charcoal/10"
                   >
                     <motion.div variants={item}>
                       <Link
@@ -228,9 +233,9 @@ function MobileOverlay({
 
             {/* CTA */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              variants={item}
+              initial="hidden"
+              animate="visible"
               className="mt-8"
             >
               <Button asChild size="lg" className="w-full">
@@ -245,7 +250,7 @@ function MobileOverlay({
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.55, duration: 0.6 }}
+              transition={{ delay: 0.35, duration: 0.4 }}
               className="mt-auto pt-10"
             >
               <p className="text-xs uppercase tracking-[0.2em] text-charcoal-muted">

@@ -20,7 +20,7 @@ const values = [
 ];
 
 export default async function Home() {
-  const agapeProducts = await fetchProducts(6);
+  const agapeProducts = await fetchProducts(4);
 
   return (
     <main>
