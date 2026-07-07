@@ -105,7 +105,7 @@ export default function ProductComments({ productId }: { productId: string }) {
             rows={3}
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder="Me encantó la pulsera, los cristales son hermosos…"
+            placeholder="Me encantó la pulsera, las pepitas son hermosas…"
             className="input-luxe resize-none"
           />
         </div>

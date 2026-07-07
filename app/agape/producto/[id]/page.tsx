@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = await fetchProductById(params.id);
   if (!product) return { title: 'Producto no encontrado', robots: { index: false } };
 
-  const title = `${product.title} | Pulsera Católica de Cristal y Oro`;
+  const title = `${product.title} | Pulsera Artesanal Católica Colombiana`;
   const description = `${product.description.slice(0, 140)} Compra en línea con envío a toda Colombia.`;
   const image = productImageUrl(product, 0);
 

@@ -10,9 +10,9 @@ export const SITE_NAME = 'Ágape';
 export const SITE_TAGLINE = 'Amar como Dios nos ama';
 
 export const DEFAULT_DESCRIPTION =
-  'Compra pulseras católicas artesanales de cristal y baño de oro 18k en Colombia. ' +
-  'Joyería religiosa inspirada en los Misterios del Santo Rosario, hecha a mano con amor. ' +
-  '“Él sana a los de corazón herido y venda sus heridas” — Salmo 147:3.';
+  'Compra pulseras católicas artesanales hechas a mano con pepas colombianas. ' +
+  'Joyería religiosa inspirada en los Misterios del Santo Rosario, hecha con amor en Colombia. ' +
+  '”Él sana a los de corazón herido y venda sus heridas” — Salmo 147:3.';
 
 /** High-intent keywords for the Colombian market. */
 export const KEYWORDS = [
@@ -20,7 +20,7 @@ export const KEYWORDS = [
   'pulseras religiosas Colombia',
   'pulsera rosario',
   'manillas católicas',
-  'pulseras de cristal y oro',
+  'pulseras artesanales con pepas',
   'pulsera con cruz',
   'denario pulsera',
   'joyería religiosa Colombia',
@@ -113,7 +113,7 @@ export function productJsonLd(product: Product) {
     sku: product._id,
     brand: { '@type': 'Brand', name: SITE_NAME },
     category: 'Joyería > Pulseras religiosas',
-    material: 'Cristal, baño de oro 18k',
+    material: 'Pepas artesanales colombianas',
     audience: { '@type': 'PeopleAudience', geographicArea: { '@type': 'Country', name: 'Colombia' } },
     offers: {
       '@type': 'Offer',
