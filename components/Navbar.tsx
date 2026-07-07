@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Logo";
 import { CopyButton } from "@/components/CopyButton";
 import { cn } from "@/lib/utils";
+import { gtagEvent } from "@/lib/gtag";
 
 const links = [
   { label: "Inicio", href: "/" },
@@ -260,7 +261,7 @@ function MobileOverlay({
                 <span className="font-display text-2xl text-charcoal">
                   {NEQUI_PRETTY}
                 </span>
-                <CopyButton value={NEQUI} label="Copiar" />
+                <CopyButton value={NEQUI} label="Copiar" onAfterCopy={() => gtagEvent('nequi_copy', { method: 'mobile_menu' })} />
               </div>
 
               <div className="mt-6 flex gap-3">

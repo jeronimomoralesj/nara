@@ -11,6 +11,7 @@ import {
 } from 'react';
 import type { CartItem, Product } from '@/lib/agape/types';
 import { finalPrice } from '@/lib/agape/types';
+import { gtagEvent } from '@/lib/gtag';
 import {
   colombiaCartImage,
   configCord,
@@ -97,6 +98,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         },
       ];
     });
+    gtagEvent('add_to_cart', {
+      currency: 'COP',
+      value: finalPrice(product) * quantity,
+      items: [{ item_id: String(product._id), item_name: product.title, price: finalPrice(product), quantity }],
+    });
     setPulse((p) => p + 1);
     setIsOpen(true);
   }, []);
@@ -140,6 +146,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           },
         ];
       });
+      gtagEvent('add_to_cart', {
+        currency: 'COP',
+        value: configPrice(config),
+        items: [{ item_id: productId, item_name: meta?.title ?? customTitle(config), price: configPrice(config), quantity: 1 }],
+      });
       setPulse((p) => p + 1);
       setIsOpen(true);
     },
@@ -147,7 +158,17 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   );
 
   const removeItem = useCallback((productId: string) => {
-    setItems((prev) => prev.filter((item) => item.productId !== productId));
+    setItems((prev) => {
+      const removed = prev.find((i) => i.productId === productId);
+      if (removed) {
+        gtagEvent('remove_from_cart', {
+          currency: 'COP',
+          value: removed.price * removed.quantity,
+          items: [{ item_id: removed.productId, item_name: removed.title, price: removed.price, quantity: removed.quantity }],
+        });
+      }
+      return prev.filter((item) => item.productId !== productId);
+    });
   }, []);
 
   const updateQuantity = useCallback((productId: string, quantity: number) => {

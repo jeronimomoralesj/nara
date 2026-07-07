@@ -11,13 +11,14 @@ interface CopyButtonProps {
   /** Visible label (defaults to value). */
   label?: string;
   className?: string;
+  onAfterCopy?: () => void;
 }
 
 /**
  * Tactile "click to copy" control with elastic press feedback and a
  * satisfying check-mark confirmation.
  */
-export function CopyButton({ value, label = "Copiar", className }: CopyButtonProps) {
+export function CopyButton({ value, label = "Copiar", className, onAfterCopy }: CopyButtonProps) {
   const [copied, setCopied] = React.useState(false);
   const timer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -34,6 +35,7 @@ export function CopyButton({ value, label = "Copiar", className }: CopyButtonPro
       document.body.removeChild(el);
     }
     setCopied(true);
+    onAfterCopy?.();
     if (timer.current) clearTimeout(timer.current);
     timer.current = setTimeout(() => setCopied(false), 1800);
   }

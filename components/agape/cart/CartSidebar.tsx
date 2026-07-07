@@ -6,9 +6,22 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Minus, Plus, ShoppingBag, Trash2, X } from 'lucide-react';
 import { useCart } from './CartContext';
 import { formatPrice } from '@/lib/agape/types';
+import { gtagEvent } from '@/lib/gtag';
+import { useEffect } from 'react';
 
 export default function CartSidebar() {
   const { items, isOpen, closeCart, removeItem, updateQuantity, totalPrice } = useCart();
+
+  useEffect(() => {
+    if (isOpen && items.length > 0) {
+      gtagEvent('view_cart', {
+        currency: 'COP',
+        value: totalPrice,
+        items: items.map((i) => ({ item_id: i.productId, item_name: i.title, price: i.price, quantity: i.quantity })),
+      });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isOpen]);
 
   return (
     <AnimatePresence>
@@ -159,7 +172,14 @@ export default function CartSidebar() {
                 </div>
                 <Link
                   href="/agape/checkout"
-                  onClick={closeCart}
+                  onClick={() => {
+                    closeCart();
+                    gtagEvent('begin_checkout', {
+                      currency: 'COP',
+                      value: totalPrice,
+                      items: items.map((i) => ({ item_id: i.productId, item_name: i.title, price: i.price, quantity: i.quantity })),
+                    });
+                  }}
                   className="btn-gold w-full"
                 >
                   Finalizar pedido

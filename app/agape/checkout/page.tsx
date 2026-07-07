@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { CheckCircle2, Loader2, Lock, ShoppingBag } from 'lucide-react';
 import { useCart } from '@/components/agape/cart/CartContext';
 import { formatPrice } from '@/lib/agape/types';
+import { gtagEvent } from '@/lib/gtag';
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -40,6 +41,12 @@ export default function CheckoutPage() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'No se pudo crear el pedido');
+      gtagEvent('purchase', {
+        transaction_id: data.orderNumber,
+        currency: 'COP',
+        value: totalPrice,
+        items: items.map((item) => ({ item_id: item.productId, item_name: item.title, price: item.price, quantity: item.quantity })),
+      });
       clearCart();
       router.push(`/checkout/gracias?orden=${encodeURIComponent(data.orderNumber)}`);
     } catch (err) {
