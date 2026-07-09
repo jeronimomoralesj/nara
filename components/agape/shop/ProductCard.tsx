@@ -13,7 +13,7 @@ import { DIJES } from '@/lib/agape/customBracelet';
 export default function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
   const [hovered, setHovered] = useState(false);
-  const [tipo, setTipo] = useState<'pulsera' | 'collar'>(product.productType ?? 'pulsera');
+  const tipo = product.productType ?? 'pulsera';
 
   const primaryImage = product.images[0] ?? '/agape/brand/pulseras.jpeg';
   const secondaryImage = product.images[1]; // revealed on hover when available
@@ -115,25 +115,8 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
       </Link>
 
-      {/* Type toggle + Quick add */}
-      <div className="px-3.5 pb-4 sm:px-5 sm:pb-5 space-y-2">
-        <div className="grid grid-cols-2 gap-1.5 rounded-2xl border border-oro/20 bg-cielo-100/60 p-1">
-          {(['pulsera', 'collar'] as const).map((t) => (
-            <button
-              key={t}
-              type="button"
-              onClick={(e) => { e.preventDefault(); setTipo(t); }}
-              aria-pressed={tipo === t}
-              className={`rounded-xl py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.15em] transition-all duration-200 ${
-                tipo === t
-                  ? 'bg-gradient-to-br from-oro-light to-oro text-royal-ink shadow-aura-soft'
-                  : 'text-royal/50 hover:text-royal'
-              }`}
-            >
-              {t === 'pulsera' ? 'Pulsera' : 'Collar'}
-            </button>
-          ))}
-        </div>
+      {/* Quick add */}
+      <div className="px-3.5 pb-4 sm:px-5 sm:pb-5">
         <button
           type="button"
           disabled={soldOut}

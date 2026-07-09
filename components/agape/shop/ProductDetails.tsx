@@ -60,7 +60,7 @@ function Accordion({
 export default function ProductDetails({ product }: { product: Product }) {
   const { addItem } = useCart();
   const [quantity, setQuantity] = useState(1);
-  const [tipo, setTipo] = useState<'pulsera' | 'collar'>(product.productType ?? 'pulsera');
+  const tipo = product.productType ?? 'pulsera';
   const [dijeId, setDijeId] = useState(DIJES[0].id);
   const soldOut = product.stock < 1;
   const discount = product.discount ?? 0;
@@ -84,25 +84,6 @@ export default function ProductDetails({ product }: { product: Product }) {
         )}
       </div>
       <p className="mt-5 leading-relaxed text-royal/70">{product.description}</p>
-
-      {/* Pulsera / Collar toggle */}
-      <div className="mt-6 grid grid-cols-2 gap-2 rounded-3xl border border-oro/20 bg-cielo-100/60 p-1.5">
-        {(['pulsera', 'collar'] as const).map((t) => (
-          <button
-            key={t}
-            type="button"
-            onClick={() => setTipo(t)}
-            aria-pressed={tipo === t}
-            className={`rounded-2xl px-4 py-2.5 font-serif text-sm font-semibold transition-all duration-300 ${
-              tipo === t
-                ? 'bg-gradient-to-br from-oro-light to-oro text-royal-ink shadow-aura-soft'
-                : 'text-royal/55 hover:text-royal'
-            }`}
-          >
-            {t === 'pulsera' ? 'Pulsera' : 'Collar'}
-          </button>
-        ))}
-      </div>
 
       {/* Dije picker — collar only */}
       <AnimatePresence initial={false}>
