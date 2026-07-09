@@ -18,6 +18,7 @@ export interface ProductFormValues {
   images: string[];
   stock: number;
   isActive: boolean;
+  productType: 'pulsera' | 'collar';
 }
 
 const EMPTY: ProductFormValues = {
@@ -28,6 +29,7 @@ const EMPTY: ProductFormValues = {
   images: [],
   stock: 0,
   isActive: true,
+  productType: 'pulsera',
 };
 
 export default function ProductForm({
@@ -50,6 +52,7 @@ export default function ProductForm({
           images: initial.images.slice(0, MAX_IMAGES),
           stock: initial.stock,
           isActive: initial.isActive,
+          productType: initial.productType ?? 'pulsera',
         }
       : EMPTY
   );
@@ -128,7 +131,9 @@ export default function ProductForm({
     >
       <div className="flex items-center justify-between">
         <h3 className="font-serif text-2xl font-bold text-royal">
-          {initial ? 'Editar pulsera' : 'Nueva pulsera'}
+          {initial
+            ? `Editar ${values.productType === 'collar' ? 'collar' : 'pulsera'}`
+            : `Nueva ${values.productType === 'collar' ? 'collar' : 'pulsera'}`}
         </h3>
         <button
           type="button"
@@ -287,6 +292,27 @@ export default function ProductForm({
           />
         </div>
 
+        <div className="sm:col-span-2">
+          <label className="mb-1.5 block text-sm font-semibold text-royal">Tipo de producto</label>
+          <div className="grid grid-cols-2 gap-2 rounded-2xl border border-oro/20 bg-cielo-100/60 p-1.5">
+            {(['pulsera', 'collar'] as const).map((t) => (
+              <button
+                key={t}
+                type="button"
+                onClick={() => set('productType', t)}
+                aria-pressed={values.productType === t}
+                className={`rounded-xl py-2 text-sm font-semibold transition-all duration-200 ${
+                  values.productType === t
+                    ? 'bg-gradient-to-br from-oro-light to-oro text-royal-ink shadow-aura-soft'
+                    : 'text-royal/50 hover:text-royal'
+                }`}
+              >
+                {t === 'pulsera' ? 'Pulsera' : 'Collar'}
+              </button>
+            ))}
+          </div>
+        </div>
+
         <div className="flex items-center sm:col-span-2">
           <label className="flex cursor-pointer items-center gap-3 text-sm font-semibold text-royal">
             <input
@@ -313,7 +339,7 @@ export default function ProductForm({
           className="btn-gold disabled:opacity-60"
         >
           {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
-          {initial ? 'Guardar cambios' : 'Crear pulsera'}
+          {initial ? 'Guardar cambios' : `Crear ${values.productType === 'collar' ? 'collar' : 'pulsera'}`}
         </button>
         <button type="button" onClick={onCancel} className="btn-ghost">
           Cancelar

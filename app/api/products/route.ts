@@ -45,6 +45,7 @@ export async function POST(request: NextRequest) {
       images: (body.images ?? []).slice(0, 4),
       stock: body.stock ?? 0,
       isActive: body.isActive ?? true,
+      productType: body.productType === 'collar' ? 'collar' : 'pulsera',
     });
     await pingIndexNow(['/', `/agape/producto/${product._id}`, '/sitemap.xml']);
     return NextResponse.json(toPublicImages(product.toObject()), { status: 201 });

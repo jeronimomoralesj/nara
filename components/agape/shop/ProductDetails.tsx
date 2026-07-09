@@ -60,7 +60,7 @@ function Accordion({
 export default function ProductDetails({ product }: { product: Product }) {
   const { addItem } = useCart();
   const [quantity, setQuantity] = useState(1);
-  const [tipo, setTipo] = useState<'pulsera' | 'collar'>('pulsera');
+  const [tipo, setTipo] = useState<'pulsera' | 'collar'>(product.productType ?? 'pulsera');
   const [dijeId, setDijeId] = useState(DIJES[0].id);
   const soldOut = product.stock < 1;
   const discount = product.discount ?? 0;

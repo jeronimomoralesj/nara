@@ -55,6 +55,7 @@ export async function PUT(request: NextRequest, { params }: Params) {
         images,
         stock: body.stock,
         isActive: body.isActive,
+        productType: body.productType === 'collar' ? 'collar' : 'pulsera',
       },
       { new: true, runValidators: true }
     ).lean();

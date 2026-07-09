@@ -18,6 +18,8 @@ const ProductSchema = new Schema(
     },
     stock: { type: Number, required: true, min: 0, default: 0 },
     isActive: { type: Boolean, default: true },
+    /** Whether this is a pulsera or collar product */
+    productType: { type: String, enum: ['pulsera', 'collar'], default: 'pulsera' },
     /** Product page views, incremented by /api/products/[id]/view */
     views: { type: Number, default: 0, min: 0 },
     createdAt: { type: Date, default: Date.now },

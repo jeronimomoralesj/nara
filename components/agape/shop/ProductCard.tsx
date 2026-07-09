@@ -13,7 +13,7 @@ import { DIJES } from '@/lib/agape/customBracelet';
 export default function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
   const [hovered, setHovered] = useState(false);
-  const [tipo, setTipo] = useState<'pulsera' | 'collar'>('pulsera');
+  const [tipo, setTipo] = useState<'pulsera' | 'collar'>(product.productType ?? 'pulsera');
 
   const primaryImage = product.images[0] ?? '/agape/brand/pulseras.jpeg';
   const secondaryImage = product.images[1]; // revealed on hover when available

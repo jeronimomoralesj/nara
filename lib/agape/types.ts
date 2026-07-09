@@ -11,6 +11,8 @@ export interface Product {
   images: string[];
   stock: number;
   isActive: boolean;
+  /** Whether this is a pulsera or collar — used to pre-select the type toggle */
+  productType?: 'pulsera' | 'collar';
   /** Product page views */
   views?: number;
   createdAt: string;
