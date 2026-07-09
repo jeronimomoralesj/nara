@@ -15,6 +15,7 @@ import { gtagEvent } from '@/lib/gtag';
 import {
   colombiaCartImage,
   configCord,
+  DIJES,
   configPrice,
   customCartImage,
   customProductId,
@@ -35,7 +36,7 @@ interface CartContextValue {
   pulse: number;
   openCart: () => void;
   closeCart: () => void;
-  addItem: (product: Product, quantity?: number) => void;
+  addItem: (product: Product, quantity?: number, opts?: { tipo?: 'pulsera' | 'collar'; dijeId?: string }) => void;
   /** `meta` carries live (admin-managed) color names/hexes for display so the
    *  cart shows the right label/thumbnail even for colors not in the static palette. */
   addCustomItem: (
@@ -76,12 +77,22 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
   }, [items]);
 
-  const addItem = useCallback((product: Product, quantity = 1) => {
+  const addItem = useCallback((product: Product, quantity = 1, opts?: { tipo?: 'pulsera' | 'collar'; dijeId?: string }) => {
+    const tipo = opts?.tipo;
+    const dijeId = opts?.dijeId;
+    const productId = tipo ? `${product._id}|${tipo}|${dijeId ?? ''}` : product._id;
+    const dije = dijeId ? DIJES.find((d) => d.id === dijeId) : undefined;
+    const suffix = tipo === 'collar'
+      ? ` · Collar · ${dije?.name ?? DIJES[0].name}`
+      : tipo === 'pulsera'
+        ? ' · Pulsera'
+        : '';
+    const title = `${product.title}${suffix}`;
     setItems((prev) => {
-      const existing = prev.find((item) => item.productId === product._id);
+      const existing = prev.find((item) => item.productId === productId);
       if (existing) {
         return prev.map((item) =>
-          item.productId === product._id
+          item.productId === productId
             ? { ...item, quantity: Math.min(item.quantity + quantity, product.stock) }
             : item
         );
@@ -89,19 +100,20 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       return [
         ...prev,
         {
-          productId: product._id,
-          title: product.title,
-          price: finalPrice(product), // discounted price when a discount is active
+          productId,
+          title,
+          price: finalPrice(product),
           image: product.images[0] ?? '/agape/brand/pulseras.jpeg',
           quantity: Math.min(quantity, product.stock),
           stock: product.stock,
+          ...(tipo ? { custom: { type: tipo, dijeId: dijeId ?? (tipo === 'collar' ? DIJES[0].id : undefined) } } : {}),
         },
       ];
     });
     gtagEvent('add_to_cart', {
       currency: 'COP',
       value: finalPrice(product) * quantity,
-      items: [{ item_id: String(product._id), item_name: product.title, price: finalPrice(product), quantity }],
+      items: [{ item_id: String(product._id), item_name: title, price: finalPrice(product), quantity }],
     });
     setPulse((p) => p + 1);
     setIsOpen(true);

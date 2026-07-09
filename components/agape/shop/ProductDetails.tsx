@@ -2,10 +2,12 @@
 
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronDown, Gem, Minus, Plus, ShieldCheck, ShoppingBag, Truck } from 'lucide-react';
+import { Check, ChevronDown, Gem, Minus, Plus, ShieldCheck, ShoppingBag, Truck } from 'lucide-react';
 import type { Product } from '@/lib/agape/types';
 import { finalPrice, formatPrice } from '@/lib/agape/types';
 import { useCart } from '@/components/agape/cart/CartContext';
+import { DIJES } from '@/lib/agape/customBracelet';
+import { DijeSwatch } from '@/components/agape/personalizar/pulseraArt';
 
 function Accordion({
   title,
@@ -58,6 +60,8 @@ function Accordion({
 export default function ProductDetails({ product }: { product: Product }) {
   const { addItem } = useCart();
   const [quantity, setQuantity] = useState(1);
+  const [tipo, setTipo] = useState<'pulsera' | 'collar'>('pulsera');
+  const [dijeId, setDijeId] = useState(DIJES[0].id);
   const soldOut = product.stock < 1;
   const discount = product.discount ?? 0;
   const price = finalPrice(product);
@@ -80,6 +84,81 @@ export default function ProductDetails({ product }: { product: Product }) {
         )}
       </div>
       <p className="mt-5 leading-relaxed text-royal/70">{product.description}</p>
+
+      {/* Pulsera / Collar toggle */}
+      <div className="mt-6 grid grid-cols-2 gap-2 rounded-3xl border border-oro/20 bg-cielo-100/60 p-1.5">
+        {(['pulsera', 'collar'] as const).map((t) => (
+          <button
+            key={t}
+            type="button"
+            onClick={() => setTipo(t)}
+            aria-pressed={tipo === t}
+            className={`rounded-2xl px-4 py-2.5 font-serif text-sm font-semibold transition-all duration-300 ${
+              tipo === t
+                ? 'bg-gradient-to-br from-oro-light to-oro text-royal-ink shadow-aura-soft'
+                : 'text-royal/55 hover:text-royal'
+            }`}
+          >
+            {t === 'pulsera' ? 'Pulsera' : 'Collar'}
+          </button>
+        ))}
+      </div>
+
+      {/* Dije picker — collar only */}
+      <AnimatePresence initial={false}>
+        {tipo === 'collar' && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="overflow-hidden"
+          >
+            <div className="mt-4">
+              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-royal/55">
+                Medalla devocional
+              </p>
+              <div className="grid grid-cols-5 gap-2">
+                {DIJES.map((option) => {
+                  const selected = dijeId === option.id;
+                  return (
+                    <button
+                      key={option.id}
+                      type="button"
+                      onClick={() => setDijeId(option.id)}
+                      aria-pressed={selected}
+                      title={option.name}
+                      className="group flex flex-col items-center gap-1.5"
+                    >
+                      <span
+                        className={`relative flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-b from-white to-cielo-100/70 p-1 transition-all duration-300 ${
+                          selected
+                            ? 'ring-2 ring-oro ring-offset-2 ring-offset-white shadow-aura-soft'
+                            : 'ring-1 ring-royal/10 group-hover:ring-oro/50'
+                        }`}
+                      >
+                        <DijeSwatch id={option.id} />
+                        {selected && (
+                          <motion.span
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-oro text-royal-ink shadow-aura-soft"
+                          >
+                            <Check className="h-2.5 w-2.5" strokeWidth={3} />
+                          </motion.span>
+                        )}
+                      </span>
+                      <span className="text-center text-[0.55rem] font-medium leading-tight text-royal/60">
+                        {option.name}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Quantity + Add to cart */}
       <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
@@ -107,7 +186,7 @@ export default function ProductDetails({ product }: { product: Product }) {
           <button
             type="button"
             disabled={soldOut}
-            onClick={() => addItem(product, quantity)}
+            onClick={() => addItem(product, quantity, { tipo, dijeId: tipo === 'collar' ? dijeId : undefined })}
             className="btn-gold w-full disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:shadow-none"
           >
             <ShoppingBag className="h-4 w-4" strokeWidth={2} />

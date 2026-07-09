@@ -7,6 +7,7 @@ import { useCart } from '@/components/agape/cart/CartContext';
 import { formatPrice } from '@/lib/agape/types';
 import {
   BEADS,
+  DIJES,
   METALS,
   MAX_NAMES,
   MAX_NAME_LEN,
@@ -17,6 +18,7 @@ import {
   type BeadOption,
   type CustomConfig,
 } from '@/lib/agape/customBracelet';
+import { DijeSwatch } from './pulseraArt';
 import { NombresCollarPreview } from './nombresArt';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -170,6 +172,7 @@ export default function NombresStudio() {
   const [mariaId, setMariaId] = useState('champana');
   const [jesusId, setJesusId] = useState('peridoto-jesus');
   const [metalId, setMetalId] = useState(METALS[0].id);
+  const [dijeId, setDijeId] = useState(DIJES[0].id);
   const [openStep, setOpenStep] = useState(1);
   const [added, setAdded] = useState(false);
 
@@ -207,6 +210,7 @@ export default function NombresStudio() {
   const mariaBead = useMemo(() => palette.find((p) => p.id === mariaId), [palette, mariaId]);
   const jesusBead = useMemo(() => palette.find((p) => p.id === jesusId), [palette, jesusId]);
   const metal = findMetal(metalId);
+  const dije = useMemo(() => DIJES.find((d) => d.id === dijeId), [dijeId]);
 
   const maria = { hex: mariaBead?.hex ?? '#EBD4BE', light: !!mariaBead?.light };
   const jesus = { hex: jesusBead?.hex ?? '#6BB343', light: !!jesusBead?.light };
@@ -229,6 +233,7 @@ export default function NombresStudio() {
       mariaId,
       jesusId,
       metalId,
+      dijeId,
       names: validNames,
     };
     addCustomItem(config, {
@@ -283,7 +288,10 @@ export default function NombresStudio() {
                 <span className="text-[0.65rem] text-royal/55">{metal.name}</span>
               </span>
             </div>
-            <p className="mt-1.5 truncate px-2 text-[0.65rem] text-royal/55 sm:text-xs">
+            <p className="mt-1 truncate px-2 text-[0.65rem] text-royal/55 sm:text-xs">
+              {dije?.name ?? ''}
+            </p>
+            <p className="mt-0.5 truncate px-2 text-[0.65rem] text-royal/55 sm:text-xs">
               {namesSummary}
             </p>
           </div>
@@ -430,6 +438,55 @@ export default function NombresStudio() {
           </div>
         </Step>
 
+        {/* Step 5 — Medalla / dije */}
+        <Step
+          number={5}
+          title="Medalla devocional"
+          summary={dije?.name ?? 'Elige una medalla'}
+          open={openStep === 5}
+          onToggle={() => setOpenStep(openStep === 5 ? 0 : 5)}
+        >
+          <p className="mb-4 text-xs text-royal/55">
+            La medalla que cuelga como cierre del collar.
+          </p>
+          <div className="grid grid-cols-3 gap-3">
+            {DIJES.map((option) => {
+              const selected = dijeId === option.id;
+              return (
+                <button
+                  key={option.id}
+                  type="button"
+                  onClick={() => setDijeId(option.id)}
+                  aria-pressed={selected}
+                  className="group flex flex-col items-center gap-2"
+                >
+                  <span
+                    className={`relative flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-b from-white to-cielo-100/70 p-1.5 transition-all duration-300 ${
+                      selected
+                        ? 'ring-2 ring-oro ring-offset-2 ring-offset-white shadow-aura-soft'
+                        : 'ring-1 ring-royal/10 group-hover:ring-oro/50'
+                    }`}
+                  >
+                    <DijeSwatch id={option.id} />
+                    {selected && (
+                      <motion.span
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        className="absolute -right-1.5 -top-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-oro text-royal-ink shadow-aura-soft"
+                      >
+                        <Check className="h-3 w-3" strokeWidth={3} />
+                      </motion.span>
+                    )}
+                  </span>
+                  <span className="text-center text-[0.65rem] font-medium leading-tight text-royal/70">
+                    {option.name}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        </Step>
+
         {/* Price + CTA */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -470,7 +527,7 @@ export default function NombresStudio() {
               ? 'Escribe al menos un nombre para continuar'
               : `Collar de ${validNames.length} ${
                   validNames.length === 1 ? 'nombre' : 'nombres'
-                } · Hecho a mano · Envíos a toda Colombia`}
+                } · ${dije?.name ?? ''} · Hecho a mano · Envíos a toda Colombia`}
           </p>
         </motion.div>
       </div>

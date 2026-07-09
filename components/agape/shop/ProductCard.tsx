@@ -8,10 +8,12 @@ import { Eye, ShoppingBag } from 'lucide-react';
 import type { Product } from '@/lib/agape/types';
 import { finalPrice, formatPrice } from '@/lib/agape/types';
 import { useCart } from '@/components/agape/cart/CartContext';
+import { DIJES } from '@/lib/agape/customBracelet';
 
 export default function ProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
   const [hovered, setHovered] = useState(false);
+  const [tipo, setTipo] = useState<'pulsera' | 'collar'>('pulsera');
 
   const primaryImage = product.images[0] ?? '/agape/brand/pulseras.jpeg';
   const secondaryImage = product.images[1]; // revealed on hover when available
@@ -113,12 +115,29 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
       </Link>
 
-      {/* Quick add */}
-      <div className="px-3.5 pb-4 sm:px-5 sm:pb-5">
+      {/* Type toggle + Quick add */}
+      <div className="px-3.5 pb-4 sm:px-5 sm:pb-5 space-y-2">
+        <div className="grid grid-cols-2 gap-1.5 rounded-2xl border border-oro/20 bg-cielo-100/60 p-1">
+          {(['pulsera', 'collar'] as const).map((t) => (
+            <button
+              key={t}
+              type="button"
+              onClick={(e) => { e.preventDefault(); setTipo(t); }}
+              aria-pressed={tipo === t}
+              className={`rounded-xl py-1.5 text-[0.65rem] font-semibold uppercase tracking-[0.15em] transition-all duration-200 ${
+                tipo === t
+                  ? 'bg-gradient-to-br from-oro-light to-oro text-royal-ink shadow-aura-soft'
+                  : 'text-royal/50 hover:text-royal'
+              }`}
+            >
+              {t === 'pulsera' ? 'Pulsera' : 'Collar'}
+            </button>
+          ))}
+        </div>
         <button
           type="button"
           disabled={soldOut}
-          onClick={() => addItem(product)}
+          onClick={() => addItem(product, 1, { tipo, dijeId: tipo === 'collar' ? DIJES[0].id : undefined })}
           className="btn-gold w-full !px-3 !py-2.5 !text-xs disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:shadow-none"
         >
           <ShoppingBag className="h-4 w-4 shrink-0" strokeWidth={2} />

@@ -260,7 +260,8 @@ export function customProductId(config: CustomConfig): string {
   }
   if (config.type === 'nombres') {
     const names = sanitizeNames(config.names).join('-').toLowerCase() || 'sin-nombre';
-    return `custom-nombres-${names}-${config.mariaId}.${config.jesusId}-${findMetal(config.metalId).id}`;
+    const dije = findDije(config.dijeId)?.id ?? DEFAULT_DIJE_ID;
+    return `custom-nombres-${names}-${config.mariaId}.${config.jesusId}-${findMetal(config.metalId).id}-${dije}`;
   }
   if (config.type === 'collar') {
     return `custom-collar-${config.mariaId}.${config.jesusId}-${configDije(config).id}`;
@@ -287,7 +288,8 @@ export function customTitle(
     const names = sanitizeNames(config.names);
     const titled = names.map((n) => n.charAt(0) + n.slice(1).toLowerCase());
     const list = titled.join(' · ') || 'Tu nombre';
-    return `Collar de Nombres — ${list} · Pepas ${maria} y ${jesus} · ${findMetal(config.metalId).name}`;
+    const dije = findDije(config.dijeId) ?? DIJES[0];
+    return `Collar de Nombres — ${list} · Pepas ${maria} y ${jesus} · ${findMetal(config.metalId).name} · ${dije.name}`;
   }
   const noun = config.type === 'collar' ? 'Collar Personalizado' : 'Pulsera Personalizada';
   const pepas = `Pepas Ave María ${maria} · Padre Nuestro ${jesus}`;
